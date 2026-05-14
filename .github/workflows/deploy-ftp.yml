@@ -82,6 +82,24 @@ jobs:
           REMOTE_DIR: ${{ secrets.FTP_SERVER_DIR || vars.FTP_SERVER_DIR || './' }}
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+          # lftp NIE obsługuje line-continuation '\' w skryptach.
+          # Cała komenda 'mirror' musi być w JEDNEJ linii, inaczej kolejne
+          # linie są traktowane jako osobne komendy i excludes nie działają
+          # (co wcześniej spowodowało wgranie .git/ na publiczny serwer).
+          MIRROR_CMD="mirror --reverse --verbose --delete --no-perms"
+          MIRROR_CMD="$MIRROR_CMD --exclude-glob .git --exclude-glob .git/**"
+          MIRROR_CMD="$MIRROR_CMD --exclude-glob .gitignore"
+          MIRROR_CMD="$MIRROR_CMD --exclude-glob .gitattributes"
+          MIRROR_CMD="$MIRROR_CMD --exclude-glob .github --exclude-glob .github/**"
+          MIRROR_CMD="$MIRROR_CMD --exclude-glob .claude --exclude-glob .claude/**"
+          MIRROR_CMD="$MIRROR_CMD --exclude-glob node_modules --exclude-glob node_modules/**"
+          MIRROR_CMD="$MIRROR_CMD --exclude-glob .env --exclude-glob .env.* --exclude-glob .env.example"
+          MIRROR_CMD="$MIRROR_CMD --exclude-glob *.mobileconfig"
+          MIRROR_CMD="$MIRROR_CMD --exclude-glob smtp_config.example.php"
+          MIRROR_CMD="$MIRROR_CMD --exclude-glob README.md"
+          MIRROR_CMD="$MIRROR_CMD --exclude-glob .DS_Store --exclude-glob Thumbs.db"
+          MIRROR_CMD="$MIRROR_CMD ./ \"$REMOTE_DIR\""
+
           {
             echo "set cmd:fail-exit yes"
             echo "set net:max-retries 3"
@@ -93,19 +111,7 @@ jobs:
             echo "set ssl:verify-certificate no"
             echo "set ftp:passive-mode yes"
             echo "open -u \"$FTP_USER\",\"$FTP_PASS\" -p \"$FTP_PORT\" \"ftp://$FTP_HOST\""
-            echo "mirror --reverse --verbose --no-perms \\"
-            echo "  --exclude-glob='.git*' \\"
-            echo "  --exclude-glob='.github/' \\"
-            echo "  --exclude-glob='.claude/' \\"
-            echo "  --exclude-glob='node_modules/' \\"
-            echo "  --exclude-glob='.env*' \\"
-            echo "  --exclude-glob='*.mobileconfig' \\"
-            echo "  --exclude-glob='smtp/*' \\"
-            echo "  --exclude-glob='smtp_config.example.php' \\"
-            echo "  --exclude-glob='README.md' \\"
-            echo "  --exclude-glob='.DS_Store' \\"
-            echo "  --exclude-glob='Thumbs.db' \\"
-            echo "  ./ \"$REMOTE_DIR\""
+            echo "$MIRROR_CMD"
             echo "bye"
           } > /tmp/lftp.cmds
           lftp -f /tmp/lftp.cmds
