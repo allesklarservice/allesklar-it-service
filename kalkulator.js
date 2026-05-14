@@ -14,7 +14,7 @@ const state = {
     czynsz: 0,
     region_typ: 'srednie',
     miasto_nazwa: '',
-    osoby: 1,
+    dorosli: 1,
     liczba_dzieci: 0,
     kindergeld: false,
     dzieci_de: 'de',
@@ -23,6 +23,16 @@ const state = {
     dochod_inne: 0,
     buergergeld: false,
     email: '',
+};
+
+// Mapowanie sytuacji życiowej → domyślna liczba dorosłych
+const DOROSLI_DEFAULT = {
+    single: 1,
+    samotny: 1,
+    senior: 1,
+    student: 1,
+    para: 2,
+    rodzina: 2,
 };
 
 // ============ NAWIGACJA EKRANÓW ============
@@ -58,6 +68,11 @@ function selectTile(el, value) {
         state.mieszkanie = value;
     } else if (field === 'sytuacja') {
         state.sytuacja = value;
+        // Auto-podstaw liczbę dorosłych na podstawie sytuacji
+        const defaultDorosli = DOROSLI_DEFAULT[value] || 1;
+        state.dorosli = defaultDorosli;
+        const doroslInput = document.getElementById('dorosli');
+        if (doroslInput) doroslInput.value = defaultDorosli;
     } else {
         state[field] = value;
     }
@@ -66,7 +81,7 @@ function selectTile(el, value) {
 // ============ ZBIERANIE INPUTÓW ============
 function captureInputs() {
     state.czynsz       = parseFloat(document.getElementById('czynsz')?.value) || 0;
-    state.osoby        = parseInt(document.getElementById('osoby')?.value, 10) || 1;
+    state.dorosli      = parseInt(document.getElementById('dorosli')?.value, 10) || 1;
     state.liczba_dzieci= parseInt(document.getElementById('liczba-dzieci')?.value, 10) || 0;
     state.dochod_1     = parseFloat(document.getElementById('dochod-1')?.value) || 0;
     state.dochod_2     = parseFloat(document.getElementById('dochod-2')?.value) || 0;

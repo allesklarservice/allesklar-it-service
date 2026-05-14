@@ -126,8 +126,15 @@ function calculate_eligibility(array $input): array
         $mietstufe  = infer_mietstufe($regionTyp, $miastoNaz);
     }
 
-    $osoby             = max(1, min(10, (int)($input['osoby'] ?? 1)));
+    // Backward-compat: jeśli klient (np. ze starej wersji frontu) wysłał 'osoby'
+    // bezpośrednio, używamy tej wartości. Inaczej liczymy z 'dorosli' + 'liczba_dzieci'.
     $liczbaDzieci      = max(0, min(10, (int)($input['liczba_dzieci'] ?? 0)));
+    if (isset($input['osoby']) && (int)$input['osoby'] > 0) {
+        $osoby = max(1, min(15, (int)$input['osoby']));
+    } else {
+        $dorosli = max(1, min(10, (int)($input['dorosli'] ?? 1)));
+        $osoby   = $dorosli + $liczbaDzieci;
+    }
     $dostajeKindergeld = !empty($input['kindergeld']);
     $dzieciDe          = trim((string)($input['dzieci_de']  ?? 'de'));
     $dochod1           = max(0, (float)($input['dochod_1']  ?? 0));
@@ -239,7 +246,7 @@ function sanitize_input(array $input): array
         'czynsz'        => max(0, (float)($input['czynsz']       ?? 0)),
         'region_typ'    => trim((string)($input['region_typ']    ?? 'srednie')),
         'miasto_nazwa'  => substr(trim((string)($input['miasto_nazwa'] ?? '')), 0, 80),
-        'osoby'         => max(1, min(10, (int)($input['osoby']  ?? 1))),
+        'dorosli'       => max(1, min(10, (int)($input['dorosli']?? 1))),
         'liczba_dzieci' => max(0, min(10, (int)($input['liczba_dzieci'] ?? 0))),
         'kindergeld'    => !empty($input['kindergeld']),
         'dzieci_de'     => trim((string)($input['dzieci_de']     ?? 'de')),

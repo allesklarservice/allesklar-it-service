@@ -62,7 +62,7 @@ $input = [
     'czynsz'        => (float)($meta['czynsz']     ?? 0),
     'region_typ'    => $meta['region_typ']    ?? 'srednie',
     'miasto_nazwa'  => $meta['miasto_nazwa']  ?? '',
-    'osoby'         => (int)($meta['osoby']        ?? 1),
+    'dorosli'       => (int)($meta['dorosli']      ?? 1),
     'liczba_dzieci' => (int)($meta['liczba_dzieci']?? 0),
     'kindergeld'    => ($meta['kindergeld']   ?? '0') === '1',
     'dzieci_de'     => $meta['dzieci_de']     ?? 'de',

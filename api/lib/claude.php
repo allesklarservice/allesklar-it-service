@@ -40,8 +40,7 @@ function claude_generate_comment(string $apiKey, array $input, array $result): s
         . "- Sytuacja: %s\n"
         . "- Mieszkanie: %s, czynsz %s €/mies.\n"
         . "- Region: %s\n"
-        . "- %d osób w gospodarstwie\n"
-        . "- Dzieci: %d (Kindergeld: %s, mieszkają: %s)\n"
+        . "- W gospodarstwie: %d dorosłych + %d dzieci (Kindergeld: %s, mieszkają: %s)\n"
         . "- Dochód razem: %s €/mies. (z 1: %s, z 2: %s, inne: %s)\n"
         . "- Bürgergeld: %s\n\n"
         . "WYNIK:\n"
@@ -53,7 +52,7 @@ function claude_generate_comment(string $apiKey, array $input, array $result): s
         $input['mieszkanie'] ?: '(brak)',
         $input['czynsz'],
         $regionInfo,
-        $input['osoby'],
+        $input['dorosli'] ?? 1,
         $input['liczba_dzieci'],
         $input['kindergeld'] ? 'TAK' : 'NIE',
         $input['dzieci_de'],
