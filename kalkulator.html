@@ -106,7 +106,7 @@
             <h2>Jaka jest Twoja <span class="gradient-text">sytuacja życiowa?</span></h2>
             <p class="form-help">Wybierz, co najlepiej do Ciebie pasuje.</p>
 
-            <div class="tile-grid">
+            <div class="tile-grid" data-field="sytuacja">
                 <button class="tile" onclick="selectTile(this, 'single')">
                     <div class="tile-icon" style="background:#EEF2FF;color:#4F46E5">👤</div>
                     <h3>Singiel</h3>
@@ -141,7 +141,7 @@
 
             <div class="form-nav">
                 <button class="btn btn-ghost" onclick="goToScreen(0)">← Wstecz</button>
-                <button class="btn btn-primary" onclick="goToScreen(2)">Dalej →</button>
+                <button class="btn btn-primary" onclick="nextStep(2)">Dalej →</button>
             </div>
         </div>
     </section>
@@ -156,7 +156,7 @@
 
             <div class="form-field">
                 <label>Co masz?</label>
-                <div class="tile-grid tile-grid-3">
+                <div class="tile-grid tile-grid-3" data-field="mieszkanie">
                     <button class="tile tile-sm" onclick="selectTile(this, 'wynajem')">
                         <div class="tile-icon" style="background:#EEF2FF;color:#4F46E5">🏢</div>
                         <h3>Wynajmuję</h3>
@@ -202,7 +202,7 @@
 
             <div class="form-nav">
                 <button class="btn btn-ghost" onclick="goToScreen(1)">← Wstecz</button>
-                <button class="btn btn-primary" onclick="goToScreen(3)">Dalej →</button>
+                <button class="btn btn-primary" onclick="nextStep(3)">Dalej →</button>
             </div>
         </div>
     </section>
@@ -222,7 +222,7 @@
 
             <div class="form-field">
                 <label>Czy obecnie pobierasz Kindergeld?</label>
-                <div class="tile-grid tile-grid-2">
+                <div class="tile-grid tile-grid-2" data-field="kindergeld">
                     <button class="tile tile-sm" onclick="selectTile(this, 'kg-tak')">
                         <div class="tile-icon" style="background:#DCFCE7;color:#16A34A">✅</div>
                         <h3>Tak</h3>
@@ -237,7 +237,7 @@
 
             <div class="form-field">
                 <label>Czy dziecko/dzieci mieszkają z Tobą w Niemczech?</label>
-                <div class="tile-grid tile-grid-3">
+                <div class="tile-grid tile-grid-3" data-field="dzieci_de">
                     <button class="tile tile-sm" onclick="selectTile(this, 'mieszka-de')">
                         <div class="tile-icon" style="background:#EEF2FF;color:#4F46E5">🇩🇪</div>
                         <h3>Tak, w Niemczech</h3>
@@ -255,7 +255,7 @@
 
             <div class="form-nav">
                 <button class="btn btn-ghost" onclick="goToScreen(2)">← Wstecz</button>
-                <button class="btn btn-primary" onclick="goToScreen(4)">Dalej →</button>
+                <button class="btn btn-primary" onclick="nextStep(4)">Dalej →</button>
             </div>
         </div>
     </section>
@@ -287,7 +287,7 @@
 
             <div class="form-field">
                 <label>Czy pobierasz aktualnie Bürgergeld (dawniej Hartz IV)?</label>
-                <div class="tile-grid tile-grid-2">
+                <div class="tile-grid tile-grid-2" data-field="buergergeld">
                     <button class="tile tile-sm" onclick="selectTile(this, 'bg-tak')">
                         <div class="tile-icon" style="background:#FEE2E2;color:#DC2626">⚠️</div>
                         <h3>Tak</h3>
@@ -311,7 +311,7 @@
 
             <div class="form-nav">
                 <button class="btn btn-ghost" onclick="goToScreen(3)">← Wstecz</button>
-                <button class="btn btn-primary" onclick="goToScreen(5)">Dalej →</button>
+                <button class="btn btn-primary" onclick="nextStep(5)">Dalej →</button>
             </div>
         </div>
     </section>
@@ -351,7 +351,7 @@
                     <input type="email" id="email" placeholder="jan.kowalski@email.com">
                 </div>
 
-                <button class="btn btn-primary btn-xl btn-stripe" onclick="goToScreen(6)">
+                <button id="payBtn" class="btn btn-primary btn-xl btn-stripe" onclick="submitCalculation()">
                     🔒 Zapłać 4,99 € przez Stripe →
                 </button>
 
@@ -380,19 +380,19 @@
                         <h3>Wohngeld</h3>
                     </div>
                     <div class="result-chance">
-                        <div class="chance-circle chance-high">78%</div>
+                        <div class="chance-circle chance-high" id="result-wohngeld-chance">—</div>
                         <div>
-                            <strong>Wysoka szansa</strong>
-                            <p>Spełniasz większość warunków</p>
+                            <strong id="result-wohngeld-label">—</strong>
+                            <p>Według naszego silnika</p>
                         </div>
                     </div>
                     <div class="result-amount">
                         <span>Szacunkowa kwota:</span>
-                        <strong>~ 340 € / mies.</strong>
+                        <strong id="result-wohngeld-amount">—</strong>
                     </div>
                     <div class="result-meta">
-                        <p><strong>Roczna oszczędność: ~4 080 €</strong></p>
-                        <p>(to ponad 80× więcej niż koszt naszego wniosku)</p>
+                        <p id="result-wohngeld-yearly">—</p>
+                        <ul id="result-wohngeld-reasons" style="font-size:13px;color:var(--text-mute);margin-top:8px;padding-left:18px"></ul>
                     </div>
                 </div>
 
@@ -403,18 +403,19 @@
                         <h3>Kinderzuschlag</h3>
                     </div>
                     <div class="result-chance">
-                        <div class="chance-circle chance-mid">45%</div>
+                        <div class="chance-circle chance-mid" id="result-kiz-chance">—</div>
                         <div>
-                            <strong>Średnia szansa</strong>
-                            <p>Warto spróbować, ale ryzyko odmowy</p>
+                            <strong id="result-kiz-label">—</strong>
+                            <p>Według naszego silnika</p>
                         </div>
                     </div>
                     <div class="result-amount">
                         <span>Szacunkowa kwota:</span>
-                        <strong>~ 250 € / mies. na dziecko</strong>
+                        <strong id="result-kiz-amount">—</strong>
                     </div>
                     <div class="result-meta">
-                        <p>Twój dochód jest blisko górnej granicy. Warto sprawdzić u doradcy.</p>
+                        <p id="result-kiz-yearly">—</p>
+                        <ul id="result-kiz-reasons" style="font-size:13px;color:var(--text-mute);margin-top:8px;padding-left:18px"></ul>
                     </div>
                 </div>
             </div>
@@ -428,11 +429,8 @@
                         <span>Wyszkolony na Wohngeldgesetz + SGB II</span>
                     </div>
                 </div>
-                <div class="ai-comment-body">
-                    <p>Cześć! Przeanalizowałem Twoją sytuację – tutaj najważniejsze wnioski po polsku, bez urzędniczego żargonu.</p>
-                    <p><strong>🟢 Wohngeld – wszystko gra.</strong> Twoje dochody (2 400 € brutto miesięcznie) plus czynsz 850 € w Mietstufe III dają Ci bardzo dobrą pozycję. Wohngeld 2026 podniósł Höchstbeträge, więc kwota może być jeszcze wyższa niż w 2025. Złóż wniosek w Wohngeldstelle w urzędzie miasta – decyzja zwykle przychodzi w 4-8 tygodni.</p>
-                    <p><strong>🟡 Kinderzuschlag – tu jest 'może'.</strong> Próg minimalny (900 € single / 1 300 € rodzina) spełniasz, ale Twój dochód jest blisko górnego progu wyłączającego. Wszystko zależy od kosztów mieszkania uznawanych przez Familienkasse. Na Twoim miejscu spróbowałbym – w najgorszym razie dostajesz "nein", w najlepszym +250 €/mies. na dziecko + BuT (obiady szkolne, wyprawka).</p>
-                    <p><strong>⚠️ Uwaga:</strong> Wohngeld i Kinderzuschlag <strong>można łączyć</strong>, ale jednoczesny Bürgergeld wyklucza oba. Jeśli kiedykolwiek dostawałeś Bürgergeld – wstrzymaj wniosek do końca tego okresu.</p>
+                <div class="ai-comment-body" id="ai-comment-body">
+                    <p>Wynik się ładuje...</p>
                 </div>
             </div>
 
@@ -527,35 +525,6 @@
         </div>
     </footer>
 
-    <script>
-        // Prosta nawigacja między ekranami
-        function goToScreen(n) {
-            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            const target = document.getElementById('screen-' + n);
-            if (target) {
-                target.classList.add('active');
-                window.scrollTo({top: 0, behavior: 'smooth'});
-            }
-        }
-
-        // Wybór kafelka (zaznaczenie)
-        function selectTile(el, value) {
-            const siblings = el.parentElement.querySelectorAll('.tile');
-            siblings.forEach(s => s.classList.remove('selected'));
-            el.classList.add('selected');
-        }
-
-        // Hamburger menu
-        document.getElementById('hamburger')?.addEventListener('click', () => {
-            document.getElementById('navMenu').classList.toggle('open');
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 20) nav.classList.add('scrolled');
-            else nav.classList.remove('scrolled');
-        });
-    </script>
+    <script src="kalkulator.js"></script>
 </body>
 </html>
