@@ -1,0 +1,12 @@
+{
+  "name": "allesklar-it-service",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Strona AllesKlarService + kalkulator AI Wohngeld/Kinderzuschlag + blog SEO",
+  "engines": {
+    "node": "20.x"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.16"
+  }
+}

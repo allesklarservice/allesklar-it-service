@@ -71,7 +71,7 @@ document.querySelectorAll('.service-card, .step-item, .case-card, .testimonial, 
     observer.observe(el);
 });
 
-// Contact form: AJAX submission do send.php (PHP mail())
+// Contact form: AJAX submission do /api/send (Node.js + nodemailer na Vercel)
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
     const statusEl = document.getElementById('formStatus');
@@ -91,8 +91,11 @@ if (contactForm) {
         try {
             const response = await fetch(contactForm.action, {
                 method: 'POST',
-                headers: { 'Accept': 'application/json' },
-                body: new FormData(contactForm)
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams(new FormData(contactForm))
             });
             const data = await response.json().catch(() => ({}));
 
