@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator AI: Wohngeld i Kinderzuschlag 2026 | AllesKlarService</title>
+    <meta name="description" content="Sprawdź w 5 minut czy należy Ci się Wohngeld lub Kinderzuschlag w 2026 roku. AI doradca wyszkolony na aktualnych niemieckich przepisach. Tylko 4,99 €.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="kalkulator.css">
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-link">
+                <img src="logo.svg" alt="AllesKlarService" class="logo-img">
+                <span class="logo-text">AllesKlar<span class="logo-accent">Service</span></span>
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="index.html#uslugi">Usługi</a>
+                <a href="kalkulator.html" class="active">Kalkulator AI</a>
+                <a href="blog.html">Blog</a>
+                <a href="index.html#cennik">Cennik</a>
+                <a href="index.html#kontakt" class="nav-cta">Kontakt</a>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ========== EKRAN 0: HERO ========== -->
+    <section class="screen screen-hero active" id="screen-0">
+        <div class="hero-bg">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+        </div>
+        <div class="container kalk-hero">
+            <span class="badge">🤖 AI doradca · Stan prawny 2026</span>
+            <h1>Czy należy Ci się <span class="gradient-text">Wohngeld lub Kinderzuschlag?</span></h1>
+            <p class="kalk-sub">Nasz <strong>AI doradca</strong> – wyszkolony specjalnie na niemieckich przepisach socjalnych z 2026 roku – sprawdzi Twoją sytuację i powie po polsku, czy warto składać wniosek. Bez tłumacza, bez wizyt w urzędzie.</p>
+
+            <div class="kalk-stats">
+                <div class="kalk-stat">
+                    <strong>5 min</strong>
+                    <span>i znasz wynik</span>
+                </div>
+                <div class="kalk-stat">
+                    <strong>4,99 €</strong>
+                    <span>jednorazowo</span>
+                </div>
+                <div class="kalk-stat">
+                    <strong>2026</strong>
+                    <span>aktualne przepisy</span>
+                </div>
+            </div>
+
+            <button class="btn btn-primary btn-xl" onclick="goToScreen(1)">Sprawdź teraz →</button>
+
+            <div class="kalk-trust">
+                <div class="trust-card">
+                    <div class="trust-icon" style="background:#EEF2FF;color:#4F46E5">🎓</div>
+                    <h3>AI wyszkolony pod nasz rynek</h3>
+                    <p>Nie zwykły ChatGPT. Specjalnie przygotowany model na podstawie Wohngeldgesetz, SGB II i aktualnych tabel 2026.</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon" style="background:#ECFEFF;color:#06B6D4">📅</div>
+                    <h3>Stan prawny styczeń 2026</h3>
+                    <p>Uwzględniamy podwyżki Mietstufen, Höchstbeträge, progi dochodowe Kinderzuschlag obowiązujące od 01.01.2026.</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon" style="background:#FCE7F3;color:#DB2777">🔒</div>
+                    <h3>Twoje dane bezpieczne</h3>
+                    <p>Nie zapisujemy odpowiedzi. Nie wysyłamy reklam. Płacisz, dostajesz wynik, koniec.</p>
+                </div>
+            </div>
+
+            <div class="kalk-mini-faq">
+                <details>
+                    <summary>Dlaczego tylko 4,99 €? <span>+</span></summary>
+                    <p>Żebyś nie żałował. Pełna konsultacja u doradcy to 25 €, złożenie wniosku 50 €. Kalkulator AI w 5 minut da Ci jasność – warto składać czy szkoda zachodu. Mniej niż kawa, a oszczędza Ci tygodnie urzędowania.</p>
+                </details>
+                <details>
+                    <summary>Co dostaję za 4,99 €? <span>+</span></summary>
+                    <p>Procentową szansę na Wohngeld + Kinderzuschlag, szacunkową kwotę miesięcznie, listę dokumentów potrzebnych do wniosku, indywidualny komentarz AI po polsku oraz PDF do pobrania.</p>
+                </details>
+                <details>
+                    <summary>Czy to gwarancja, że dostanę świadczenie? <span>+</span></summary>
+                    <p>Nie – ostateczną decyzję wydaje urząd (Wohngeldstelle, Familienkasse). Ale AI bardzo dokładnie szacuje szansę na podstawie tych samych formuł, których używają urzędnicy. Jeśli wychodzi 80%+, masz bardzo duże szanse.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== KROK 1: SYTUACJA ŻYCIOWA ========== -->
+    <section class="screen screen-form" id="screen-1">
+        <div class="container kalk-form">
+            <div class="progress-bar"><div class="progress-fill" style="width:20%"></div></div>
+            <span class="progress-label">Krok 1 z 5</span>
+            <h2>Jaka jest Twoja <span class="gradient-text">sytuacja życiowa?</span></h2>
+            <p class="form-help">Wybierz, co najlepiej do Ciebie pasuje.</p>
+
+            <div class="tile-grid">
+                <button class="tile" onclick="selectTile(this, 'single')">
+                    <div class="tile-icon" style="background:#EEF2FF;color:#4F46E5">👤</div>
+                    <h3>Singiel</h3>
+                    <p>Mieszkam sam/sama</p>
+                </button>
+                <button class="tile" onclick="selectTile(this, 'para')">
+                    <div class="tile-icon" style="background:#ECFEFF;color:#06B6D4">👫</div>
+                    <h3>Para bez dzieci</h3>
+                    <p>Małżeństwo lub partnerstwo</p>
+                </button>
+                <button class="tile" onclick="selectTile(this, 'rodzina')">
+                    <div class="tile-icon" style="background:#FCE7F3;color:#DB2777">👨‍👩‍👧</div>
+                    <h3>Rodzina z dziećmi</h3>
+                    <p>Para + dzieci do 25 r.ż.</p>
+                </button>
+                <button class="tile" onclick="selectTile(this, 'samotny')">
+                    <div class="tile-icon" style="background:#FEF3C7;color:#D97706">👩‍👦</div>
+                    <h3>Samotny rodzic</h3>
+                    <p>Wychowuję dzieci sam/sama</p>
+                </button>
+                <button class="tile" onclick="selectTile(this, 'senior')">
+                    <div class="tile-icon" style="background:#DCFCE7;color:#16A34A">👴</div>
+                    <h3>Emeryt / rencista</h3>
+                    <p>Pobieram Rentę</p>
+                </button>
+                <button class="tile" onclick="selectTile(this, 'student')">
+                    <div class="tile-icon" style="background:#E0E7FF;color:#6366F1">🎓</div>
+                    <h3>Student</h3>
+                    <p>Uczę się / Ausbildung</p>
+                </button>
+            </div>
+
+            <div class="form-nav">
+                <button class="btn btn-ghost" onclick="goToScreen(0)">← Wstecz</button>
+                <button class="btn btn-primary" onclick="goToScreen(2)">Dalej →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== KROK 2: MIESZKANIE ========== -->
+    <section class="screen screen-form" id="screen-2">
+        <div class="container kalk-form">
+            <div class="progress-bar"><div class="progress-fill" style="width:40%"></div></div>
+            <span class="progress-label">Krok 2 z 5</span>
+            <h2>Powiedz mi o <span class="gradient-text">Twoim mieszkaniu</span></h2>
+            <p class="form-help">Te dane decydują o Wohngeld. Im wyższy czynsz i większa rodzina, tym wyższa szansa.</p>
+
+            <div class="form-field">
+                <label>Co masz?</label>
+                <div class="tile-grid tile-grid-3">
+                    <button class="tile tile-sm" onclick="selectTile(this, 'wynajem')">
+                        <div class="tile-icon" style="background:#EEF2FF;color:#4F46E5">🏢</div>
+                        <h3>Wynajmuję</h3>
+                    </button>
+                    <button class="tile tile-sm" onclick="selectTile(this, 'wlasne')">
+                        <div class="tile-icon" style="background:#FEF3C7;color:#D97706">🏠</div>
+                        <h3>Własne mieszkanie</h3>
+                    </button>
+                    <button class="tile tile-sm" onclick="selectTile(this, 'subnajem')">
+                        <div class="tile-icon" style="background:#FCE7F3;color:#DB2777">🛏️</div>
+                        <h3>Podnajem / WG</h3>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label for="czynsz">Miesięczny czynsz brutto (Warmmiete)</label>
+                <div class="input-with-suffix">
+                    <input type="number" id="czynsz" placeholder="np. 850" min="0">
+                    <span>€/mies.</span>
+                </div>
+                <small>Wpisz pełną kwotę z mediami (ciepło, woda) – tak jak na umowie najmu.</small>
+            </div>
+
+            <div class="form-field">
+                <label for="miasto">Twoje miasto / region</label>
+                <select id="miasto">
+                    <option value="">-- wybierz --</option>
+                    <option value="1">Mała wieś (Mietstufe I) – np. wschodnia Saksonia</option>
+                    <option value="2">Mniejsze miasto (Mietstufe II) – np. małe miasta NRW</option>
+                    <option value="3">Stade, Cuxhaven, Lüneburg (Mietstufe III)</option>
+                    <option value="4">Hannover, Bremen (Mietstufe IV)</option>
+                    <option value="5">Hamburg-okolice, Köln (Mietstufe V)</option>
+                    <option value="6">Hamburg-Mitte, München, Frankfurt (Mietstufe VI-VII)</option>
+                </select>
+                <small>Nie znasz Mietstufe? Wpisz miasto a AI dopasuje.</small>
+            </div>
+
+            <div class="form-field">
+                <label for="osoby">Ile osób mieszka w gospodarstwie domowym?</label>
+                <input type="number" id="osoby" min="1" max="10" value="1">
+            </div>
+
+            <div class="form-nav">
+                <button class="btn btn-ghost" onclick="goToScreen(1)">← Wstecz</button>
+                <button class="btn btn-primary" onclick="goToScreen(3)">Dalej →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== KROK 3: DZIECI ========== -->
+    <section class="screen screen-form" id="screen-3">
+        <div class="container kalk-form">
+            <div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div>
+            <span class="progress-label">Krok 3 z 5</span>
+            <h2>Czy masz <span class="gradient-text">dzieci?</span></h2>
+            <p class="form-help">Te informacje decydują o Kinderzuschlag (do 297 € na dziecko).</p>
+
+            <div class="form-field">
+                <label for="liczba-dzieci">Liczba dzieci do 25. roku życia (wliczając uczące się)</label>
+                <input type="number" id="liczba-dzieci" min="0" max="10" value="0">
+            </div>
+
+            <div class="form-field">
+                <label>Czy obecnie pobierasz Kindergeld?</label>
+                <div class="tile-grid tile-grid-2">
+                    <button class="tile tile-sm" onclick="selectTile(this, 'kg-tak')">
+                        <div class="tile-icon" style="background:#DCFCE7;color:#16A34A">✅</div>
+                        <h3>Tak</h3>
+                    </button>
+                    <button class="tile tile-sm" onclick="selectTile(this, 'kg-nie')">
+                        <div class="tile-icon" style="background:#FEE2E2;color:#DC2626">❌</div>
+                        <h3>Nie</h3>
+                    </button>
+                </div>
+                <small>Bez Kindergeld nie można dostać Kinderzuschlag — to warunek.</small>
+            </div>
+
+            <div class="form-field">
+                <label>Czy dziecko/dzieci mieszkają z Tobą w Niemczech?</label>
+                <div class="tile-grid tile-grid-3">
+                    <button class="tile tile-sm" onclick="selectTile(this, 'mieszka-de')">
+                        <div class="tile-icon" style="background:#EEF2FF;color:#4F46E5">🇩🇪</div>
+                        <h3>Tak, w Niemczech</h3>
+                    </button>
+                    <button class="tile tile-sm" onclick="selectTile(this, 'mieszka-pl')">
+                        <div class="tile-icon" style="background:#FEF3C7;color:#D97706">🇵🇱</div>
+                        <h3>W Polsce</h3>
+                    </button>
+                    <button class="tile tile-sm" onclick="selectTile(this, 'mieszka-mix')">
+                        <div class="tile-icon" style="background:#FCE7F3;color:#DB2777">🤝</div>
+                        <h3>Część tu, część tam</h3>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-nav">
+                <button class="btn btn-ghost" onclick="goToScreen(2)">← Wstecz</button>
+                <button class="btn btn-primary" onclick="goToScreen(4)">Dalej →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== KROK 4: DOCHODY ========== -->
+    <section class="screen screen-form" id="screen-4">
+        <div class="container kalk-form">
+            <div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div>
+            <span class="progress-label">Krok 4 z 5</span>
+            <h2>Twoje <span class="gradient-text">dochody</span></h2>
+            <p class="form-help">Najważniejszy krok. Wpisz kwoty <strong>brutto</strong> z paska – tak jak chce urząd.</p>
+
+            <div class="form-field">
+                <label for="dochod-1">Twój dochód brutto / miesięcznie</label>
+                <div class="input-with-suffix">
+                    <input type="number" id="dochod-1" placeholder="np. 2400" min="0">
+                    <span>€/mies.</span>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label for="dochod-2">Dochód brutto partnera/małżonka (jeśli jest)</label>
+                <div class="input-with-suffix">
+                    <input type="number" id="dochod-2" placeholder="np. 0" min="0">
+                    <span>€/mies.</span>
+                </div>
+                <small>Wpisz 0 jeśli partner nie pracuje albo go nie masz.</small>
+            </div>
+
+            <div class="form-field">
+                <label>Czy pobierasz aktualnie Bürgergeld (dawniej Hartz IV)?</label>
+                <div class="tile-grid tile-grid-2">
+                    <button class="tile tile-sm" onclick="selectTile(this, 'bg-tak')">
+                        <div class="tile-icon" style="background:#FEE2E2;color:#DC2626">⚠️</div>
+                        <h3>Tak</h3>
+                        <p style="font-size:13px;color:var(--text-mute)">Wtedy nie należą się Wohngeld/Kinderzuschlag</p>
+                    </button>
+                    <button class="tile tile-sm" onclick="selectTile(this, 'bg-nie')">
+                        <div class="tile-icon" style="background:#DCFCE7;color:#16A34A">✅</div>
+                        <h3>Nie</h3>
+                        <p style="font-size:13px;color:var(--text-mute)">Idziemy dalej</p>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label>Inne dochody (alimenty, Elterngeld, najem)</label>
+                <div class="input-with-suffix">
+                    <input type="number" id="dochod-inne" placeholder="np. 0" min="0">
+                    <span>€/mies.</span>
+                </div>
+            </div>
+
+            <div class="form-nav">
+                <button class="btn btn-ghost" onclick="goToScreen(3)">← Wstecz</button>
+                <button class="btn btn-primary" onclick="goToScreen(5)">Dalej →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== KROK 5: PŁATNOŚĆ ========== -->
+    <section class="screen screen-pay" id="screen-5">
+        <div class="container kalk-pay">
+            <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+            <span class="progress-label">Twoja analiza jest gotowa 🔒</span>
+            <h2>Wynik czeka. <span class="gradient-text">Tylko 4,99 €.</span></h2>
+            <p class="form-help">AI sprawdził Twoją sytuację. Odblokuj pełny raport za mniej niż cena kawy.</p>
+
+            <div class="pay-card">
+                <div class="pay-row">
+                    <span>🤖 Spersonalizowana analiza AI po polsku</span>
+                    <strong>✅</strong>
+                </div>
+                <div class="pay-row">
+                    <span>💰 Procentowa szansa + szacunkowa kwota</span>
+                    <strong>✅</strong>
+                </div>
+                <div class="pay-row">
+                    <span>📋 Lista dokumentów do wniosku</span>
+                    <strong>✅</strong>
+                </div>
+                <div class="pay-row">
+                    <span>📄 Raport PDF do pobrania</span>
+                    <strong>✅</strong>
+                </div>
+                <div class="pay-row pay-total">
+                    <span>Cena jednorazowa</span>
+                    <strong>4,99 €</strong>
+                </div>
+
+                <div class="pay-email">
+                    <label for="email">Twój e-mail (na fakturę i PDF)</label>
+                    <input type="email" id="email" placeholder="jan.kowalski@email.com">
+                </div>
+
+                <button class="btn btn-primary btn-xl btn-stripe" onclick="goToScreen(6)">
+                    🔒 Zapłać 4,99 € przez Stripe →
+                </button>
+
+                <p class="pay-guarantee">💯 Jeśli wynik nie będzie dla Ciebie zrozumiały – zwracamy pieniądze.</p>
+                <p class="pay-meta">Płatność szyfrowana przez Stripe. Nie zapisujemy danych karty.</p>
+            </div>
+
+            <div class="form-nav">
+                <button class="btn btn-ghost" onclick="goToScreen(4)">← Wstecz, jeszcze coś poprawię</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== KROK 6: WYNIK ========== -->
+    <section class="screen screen-result" id="screen-6">
+        <div class="container kalk-result">
+            <span class="badge badge-success">✅ Płatność zaakceptowana · Raport gotowy</span>
+            <h2>Twoja <span class="gradient-text">analiza AI</span></h2>
+            <p class="form-help">Wynik na podstawie podanych danych i przepisów obowiązujących od 01.01.2026.</p>
+
+            <div class="result-grid">
+                <!-- Wohngeld -->
+                <div class="result-card result-card-success">
+                    <div class="result-header">
+                        <div class="result-icon" style="background:#FEF3C7;color:#D97706">🏠</div>
+                        <h3>Wohngeld</h3>
+                    </div>
+                    <div class="result-chance">
+                        <div class="chance-circle chance-high">78%</div>
+                        <div>
+                            <strong>Wysoka szansa</strong>
+                            <p>Spełniasz większość warunków</p>
+                        </div>
+                    </div>
+                    <div class="result-amount">
+                        <span>Szacunkowa kwota:</span>
+                        <strong>~ 340 € / mies.</strong>
+                    </div>
+                    <div class="result-meta">
+                        <p><strong>Roczna oszczędność: ~4 080 €</strong></p>
+                        <p>(to ponad 80× więcej niż koszt naszego wniosku)</p>
+                    </div>
+                </div>
+
+                <!-- Kinderzuschlag -->
+                <div class="result-card result-card-warning">
+                    <div class="result-header">
+                        <div class="result-icon" style="background:#ECFEFF;color:#06B6D4">👶</div>
+                        <h3>Kinderzuschlag</h3>
+                    </div>
+                    <div class="result-chance">
+                        <div class="chance-circle chance-mid">45%</div>
+                        <div>
+                            <strong>Średnia szansa</strong>
+                            <p>Warto spróbować, ale ryzyko odmowy</p>
+                        </div>
+                    </div>
+                    <div class="result-amount">
+                        <span>Szacunkowa kwota:</span>
+                        <strong>~ 250 € / mies. na dziecko</strong>
+                    </div>
+                    <div class="result-meta">
+                        <p>Twój dochód jest blisko górnej granicy. Warto sprawdzić u doradcy.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI komentarz -->
+            <div class="ai-comment">
+                <div class="ai-comment-head">
+                    <div class="ai-avatar">🤖</div>
+                    <div>
+                        <strong>Komentarz AI doradcy</strong>
+                        <span>Wyszkolony na Wohngeldgesetz + SGB II</span>
+                    </div>
+                </div>
+                <div class="ai-comment-body">
+                    <p>Cześć! Przeanalizowałem Twoją sytuację – tutaj najważniejsze wnioski po polsku, bez urzędniczego żargonu.</p>
+                    <p><strong>🟢 Wohngeld – wszystko gra.</strong> Twoje dochody (2 400 € brutto miesięcznie) plus czynsz 850 € w Mietstufe III dają Ci bardzo dobrą pozycję. Wohngeld 2026 podniósł Höchstbeträge, więc kwota może być jeszcze wyższa niż w 2025. Złóż wniosek w Wohngeldstelle w urzędzie miasta – decyzja zwykle przychodzi w 4-8 tygodni.</p>
+                    <p><strong>🟡 Kinderzuschlag – tu jest 'może'.</strong> Próg minimalny (900 € single / 1 300 € rodzina) spełniasz, ale Twój dochód jest blisko górnego progu wyłączającego. Wszystko zależy od kosztów mieszkania uznawanych przez Familienkasse. Na Twoim miejscu spróbowałbym – w najgorszym razie dostajesz "nein", w najlepszym +250 €/mies. na dziecko + BuT (obiady szkolne, wyprawka).</p>
+                    <p><strong>⚠️ Uwaga:</strong> Wohngeld i Kinderzuschlag <strong>można łączyć</strong>, ale jednoczesny Bürgergeld wyklucza oba. Jeśli kiedykolwiek dostawałeś Bürgergeld – wstrzymaj wniosek do końca tego okresu.</p>
+                </div>
+            </div>
+
+            <!-- Lista dokumentów -->
+            <div class="docs-card">
+                <h3>📋 Dokumenty, których będziesz potrzebować</h3>
+                <ul>
+                    <li>✓ Umowa najmu (Mietvertrag) – aktualna</li>
+                    <li>✓ Zaświadczenie o czynszu (Mietbescheinigung) – wzór dostaniesz u nas</li>
+                    <li>✓ 3 ostatnie paski wynagrodzenia (Lohnabrechnung)</li>
+                    <li>✓ Zaświadczenie o pobieraniu Kindergeld (jeśli dotyczy)</li>
+                    <li>✓ Akt urodzenia dziecka (do Kinderzuschlag)</li>
+                    <li>✓ Wyciąg z konta za ostatnie 3 miesiące</li>
+                    <li>✓ Aktualny Anmeldung (zameldowanie)</li>
+                </ul>
+            </div>
+
+            <!-- DISCLAIMER URZĘDU -->
+            <div class="disclaimer-card">
+                <div class="disclaimer-icon">⚖️</div>
+                <div>
+                    <strong>Ważne: ostateczną decyzję wydaje urząd</strong>
+                    <p>Nasz AI bardzo dokładnie szacuje szansę na podstawie tych samych formuł co Wohngeldstelle i Familienkasse. Ale prawdziwą decyzję wydaje urzędnik – po sprawdzeniu wszystkich dokumentów. Wynik kalkulatora to <strong>prognoza</strong>, nie gwarancja.</p>
+                </div>
+            </div>
+
+            <!-- UPSELL: WYBÓR USŁUGI -->
+            <div class="upsell-card">
+                <div class="upsell-header">
+                    <h3>Nie chce Ci się latać po urzędach?</h3>
+                    <p class="upsell-sub">Złożymy wniosek za Ciebie – po polsku, z gwarancją poprawności. <strong>500+ wniosków rocznie, 98% pozytywnych decyzji.</strong></p>
+                </div>
+
+                <div class="service-tiles">
+                    <a href="index.html#kontakt" class="service-tile">
+                        <div class="service-tile-icon" style="background:#EEF2FF;color:#4F46E5">💬</div>
+                        <h4>Konsultacja po polsku</h4>
+                        <p>30-minutowa rozmowa — wątpliwości, pytania, plan działania</p>
+                        <div class="service-tile-price">
+                            <strong>25 €</strong>
+                            <span>jednorazowo</span>
+                        </div>
+                    </a>
+
+                    <a href="index.html#kontakt" class="service-tile">
+                        <div class="service-tile-icon" style="background:#FEF3C7;color:#D97706">🏠</div>
+                        <h4>Wniosek Wohngeld</h4>
+                        <p>Pełen wniosek dopłaty do mieszkania, my wypełniamy i wysyłamy</p>
+                        <div class="service-tile-price">
+                            <strong>50 €</strong>
+                            <span>jednorazowo</span>
+                        </div>
+                    </a>
+
+                    <a href="index.html#kontakt" class="service-tile">
+                        <div class="service-tile-icon" style="background:#ECFEFF;color:#06B6D4">👶</div>
+                        <h4>Wniosek Kinderzuschlag</h4>
+                        <p>Pełen wniosek o dodatek na dzieci 297 €/mies., my zajmiemy się dokumentami</p>
+                        <div class="service-tile-price">
+                            <strong>50 €</strong>
+                            <span>jednorazowo</span>
+                        </div>
+                    </a>
+
+                    <a href="index.html#kontakt" class="service-tile service-tile-best">
+                        <div class="service-tile-badge">🎁 Najwięcej oszczędzasz</div>
+                        <div class="service-tile-icon" style="background:#FCE7F3;color:#DB2777">📋</div>
+                        <h4>Oba wnioski razem</h4>
+                        <p>Wohngeld + Kinderzuschlag w jednym pakiecie. Składamy oba na podstawie tych samych dokumentów</p>
+                        <div class="service-tile-price">
+                            <strong>80 €</strong>
+                            <span><s>100 €</s> oszczędzasz 20 €</span>
+                        </div>
+                    </a>
+                </div>
+
+                <p class="upsell-roi">💡 50 € to koszt 1 dnia świadczenia. Po pierwszej wypłacie z urzędu inwestycja zwraca się z nawiązką.</p>
+            </div>
+
+            <div class="result-actions">
+                <button class="btn btn-ghost" onclick="window.print()">📄 Pobierz PDF</button>
+                <button class="btn btn-ghost" onclick="goToScreen(0)">🔄 Sprawdź inną sytuację</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 AllesKlarService · Stade · Pomoc dla Polaków w Niemczech</p>
+            <p><small>Kalkulator ma charakter informacyjny. Ostateczną decyzję wydaje właściwy urząd niemiecki.</small></p>
+        </div>
+    </footer>
+
+    <script>
+        // Prosta nawigacja między ekranami
+        function goToScreen(n) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            const target = document.getElementById('screen-' + n);
+            if (target) {
+                target.classList.add('active');
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            }
+        }
+
+        // Wybór kafelka (zaznaczenie)
+        function selectTile(el, value) {
+            const siblings = el.parentElement.querySelectorAll('.tile');
+            siblings.forEach(s => s.classList.remove('selected'));
+            el.classList.add('selected');
+        }
+
+        // Hamburger menu
+        document.getElementById('hamburger')?.addEventListener('click', () => {
+            document.getElementById('navMenu').classList.toggle('open');
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 20) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+    </script>
+</body>
+</html>

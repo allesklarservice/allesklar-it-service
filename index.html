@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AllesKlarService – Pomoc dla Polaków w Niemczech | Kinderzuschlag, Kindergeld, Wohngeld</title>
+    <meta name="description" content="Profesjonalna pomoc dla Polaków w Niemczech. Wnioski o Kinderzuschlag, Kindergeld, Wohngeld, wyprawkę szkolną, dofinansowanie obiadów i dojazdów. Stade.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#hero" class="logo-link">
+                <img src="logo.svg" alt="AllesKlarService" class="logo-img">
+                <span class="logo-text">AllesKlar<span class="logo-accent">Service</span></span>
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="#uslugi">Usługi</a>
+                <a href="#slownik">Słowniczek</a>
+                <a href="#jak-dzialam">Jak działam</a>
+                <a href="#cennik">Cennik</a>
+                <a href="#przypadki">Case studies</a>
+                <a href="#opinie">Opinie</a>
+                <a href="#kontakt" class="nav-cta">Kontakt</a>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+        </div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="badge">🇵🇱 Po polsku · 🇩🇪 W Niemczech</span>
+                <h1>Niemieckie urzędy?<br><span class="gradient-text">U mnie wszystko jasne.</span></h1>
+                <p class="hero-sub">Pomagam Polakom mieszkającym w Niemczech załatwić formalności związane z <strong>Kinderzuschlag, Kindergeld, Wohngeld</strong>, wyprawką szkolną oraz dofinansowaniem obiadów i dojazdów. Bez stresu, bez tłumacza, bez błędów we wnioskach.</p>
+                <div class="hero-cta">
+                    <a href="#kontakt" class="btn btn-primary">Umów konsultację</a>
+                    <a href="#slownik" class="btn btn-ghost">Poznaj mnie ↓</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <strong>500+</strong>
+                        <span>złożonych wniosków</span>
+                    </div>
+                    <div class="stat">
+                        <strong>98%</strong>
+                        <span>pozytywnych decyzji</span>
+                    </div>
+                    <div class="stat">
+                        <strong>7 lat</strong>
+                        <span>doświadczenia</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-portrait">
+                    <div class="portrait-glow" aria-hidden="true"></div>
+                    <img src="ja2.png" alt="Andrzej — AllesKlarService Stade" />
+                    <a href="https://wa.me/4915510247160?text=Cze%C5%9B%C4%87%21%20Pisz%C4%99%20w%20sprawie%20pomocy%20w%20za%C5%82atwieniu%20wniosk%C3%B3w%20%28Kindergeld%2FKinderzuschlag%2FWohngeld%29."
+                       target="_blank" rel="noopener noreferrer"
+                       class="portrait-wa"
+                       aria-label="Napisz na WhatsApp"
+                       title="Napisz na WhatsApp">
+                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M16.003 0C7.17 0 0 7.169 0 16c0 2.825.737 5.583 2.139 8.002L0 32l8.207-2.156A15.95 15.95 0 0 0 16.003 32C24.832 32 32 24.831 32 16S24.832 0 16.003 0zm0 29.333c-2.46 0-4.882-.661-7.001-1.911l-.502-.298-4.872 1.281 1.299-4.747-.327-.518A13.27 13.27 0 0 1 2.667 16c0-7.353 5.983-13.333 13.336-13.333S29.333 8.647 29.333 16 23.356 29.333 16.003 29.333zM23.32 19.27c-.4-.2-2.367-1.167-2.733-1.3-.367-.133-.633-.2-.9.2s-1.033 1.3-1.267 1.567-.467.3-.867.1c-.4-.2-1.689-.622-3.218-1.985-1.19-1.061-1.99-2.37-2.224-2.77-.234-.4-.025-.616.175-.815.18-.18.4-.467.6-.7.2-.234.267-.4.4-.667.133-.267.067-.5-.033-.7-.1-.2-.9-2.167-1.233-2.967-.323-.78-.65-.673-.9-.685-.234-.012-.5-.014-.767-.014a1.47 1.47 0 0 0-1.067.5c-.367.4-1.4 1.367-1.4 3.333 0 1.967 1.433 3.867 1.633 4.133.2.267 2.821 4.31 6.84 6.041 2.41 1.04 3.355 1.13 4.555 1.001 1.029-.115 2.367-.967 2.7-1.901.333-.933.333-1.733.234-1.901-.1-.167-.367-.267-.767-.467z"/>
+                        </svg>
+                        <span class="portrait-wa-label">Napisz!</span>
+                    </a>
+                    <div class="portrait-tag">
+                        <span class="portrait-dot"></span>
+                        Andrzej · Stade · Po polsku
+                    </div>
+                </div>
+                <div class="float-card hero-fc hero-fc-top" aria-hidden="true">
+                    <div class="card-icon">👨‍👩‍👧‍👦</div>
+                    <div>
+                        <strong>Kindergeld</strong>
+                        <p>250 € / mies. na dziecko</p>
+                    </div>
+                </div>
+                <div class="float-card hero-fc hero-fc-bottom" aria-hidden="true">
+                    <div class="card-icon">✅</div>
+                    <div>
+                        <strong>Wniosek złożony</strong>
+                        <p>Decyzja pozytywna</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- USŁUGI -->
+    <section class="section services" id="uslugi">
+        <div class="container">
+            <div class="section-head">
+                <span class="eyebrow">Co dla Ciebie zrobię</span>
+                <h2>Kompleksowa pomoc <span class="gradient-text">w jednym miejscu</span></h2>
+                <p>Wnioski, pisma, odwołania, kontakt z urzędem – po niemiecku, ale tłumaczone na polski.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon-wrap" style="background:#EEF2FF;color:#4F46E5">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3>Kindergeld</h3>
+                    <p>Złożenie wniosku o świadczenie rodzinne (250 € / miesiąc na dziecko) w Familienkasse.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon-wrap" style="background:#ECFEFF;color:#06B6D4">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <h3>Kinderzuschlag</h3>
+                    <p>Dodatek na dziecko do 297 € miesięcznie dla rodzin o niższych dochodach.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon-wrap" style="background:#FEF3C7;color:#D97706">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </div>
+                    <h3>Wohngeld</h3>
+                    <p>Dopłata do czynszu lub kredytu hipotecznego – wsparcie dla pracujących i emerytów.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon-wrap" style="background:#FCE7F3;color:#DB2777">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                    </div>
+                    <h3>Wyprawka szkolna</h3>
+                    <p>Wniosek o sfinansowanie zakupu książek, plecaka, przyborów szkolnych dla dziecka.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon-wrap" style="background:#DCFCE7;color:#16A34A">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11h18M5 11V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v3M5 11v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/><circle cx="8" cy="15" r="1"/><circle cx="16" cy="15" r="1"/></svg>
+                    </div>
+                    <h3>Dofinansowanie obiadów</h3>
+                    <p>Pieniądze na ciepły posiłek w szkole lub przedszkolu w ramach programu BuT.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon-wrap" style="background:#E0E7FF;color:#6366F1">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 21h8M12 17v4M5 3h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg>
+                    </div>
+                    <h3>Dojazdy do szkoły</h3>
+                    <p>Bilet miesięczny dla dziecka – sfinansowany przez gminę. Pomogę złożyć wniosek.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SŁOWNICZEK -->
+    <section class="section glossary" id="slownik">
+        <div class="container">
+            <div class="section-head">
+                <span class="eyebrow">Bez ściemy, po ludzku</span>
+                <h2>Słowniczek <span class="gradient-text">„dla opornych"</span></h2>
+                <p>Wszystkie te dziwne niemieckie słowa wytłumaczone w 30 sekund.</p>
+            </div>
+            <div class="glossary-grid">
+                <details class="glossary-item">
+                    <summary>
+                        <span class="g-tag">Kindergeld</span>
+                        <span class="g-arrow">+</span>
+                    </summary>
+                    <div class="g-body">
+                        <p><strong>Co to jest?</strong> To „500+" po niemiecku. Państwo niemieckie płaci rodzicom <strong>250 € miesięcznie na każde dziecko</strong>, niezależnie od dochodów.</p>
+                        <p><strong>Kto może dostać?</strong> Każdy rodzic legalnie pracujący w Niemczech, nawet jeśli dziecko mieszka w Polsce.</p>
+                        <p><strong>Gdzie się składa?</strong> Familienkasse (oddział Agencji Pracy).</p>
+                    </div>
+                </details>
+                <details class="glossary-item">
+                    <summary>
+                        <span class="g-tag">Kinderzuschlag</span>
+                        <span class="g-arrow">+</span>
+                    </summary>
+                    <div class="g-body">
+                        <p><strong>Co to jest?</strong> Dodatkowe wsparcie do <strong>297 € miesięcznie na dziecko</strong> dla rodzin pracujących, ale o niższych dochodach.</p>
+                        <p><strong>Kto może dostać?</strong> Pracujesz, dostajesz Kindergeld, ale nie wystarcza Ci do końca miesiąca? To świadczenie jest dla Ciebie.</p>
+                        <p><strong>Bonus:</strong> Dostajesz też automatycznie BuT (Bildungspaket) – obiady, wyprawkę, dojazdy!</p>
+                    </div>
+                </details>
+                <details class="glossary-item">
+                    <summary>
+                        <span class="g-tag">Wohngeld</span>
+                        <span class="g-arrow">+</span>
+                    </summary>
+                    <div class="g-body">
+                        <p><strong>Co to jest?</strong> Dopłata państwa do <strong>czynszu lub raty kredytu hipotecznego</strong>.</p>
+                        <p><strong>Kto może dostać?</strong> Każdy, kto wynajmuje lub spłaca mieszkanie i ma niższe dochody. Nie tylko bezrobotni – również pracujący i emeryci!</p>
+                        <p><strong>Gdzie się składa?</strong> Wohngeldstelle w urzędzie miasta/gminy.</p>
+                    </div>
+                </details>
+                <details class="glossary-item">
+                    <summary>
+                        <span class="g-tag">BuT (Bildungspaket)</span>
+                        <span class="g-arrow">+</span>
+                    </summary>
+                    <div class="g-body">
+                        <p><strong>Co to jest?</strong> „Pakiet edukacyjny" – zestaw świadczeń dla dzieci z rodzin pobierających Kinderzuschlag, Wohngeld lub Bürgergeld.</p>
+                        <p><strong>Co obejmuje?</strong></p>
+                        <ul>
+                            <li>📚 Wyprawka szkolna – <strong>195 € rocznie</strong></li>
+                            <li>🍝 Ciepły obiad w szkole/przedszkolu</li>
+                            <li>🚌 Bilet miesięczny dla ucznia</li>
+                            <li>🎨 Korepetycje i zajęcia dodatkowe</li>
+                            <li>🎂 Dofinansowanie wycieczek klasowych</li>
+                        </ul>
+                    </div>
+                </details>
+                <details class="glossary-item">
+                    <summary>
+                        <span class="g-tag">Familienkasse</span>
+                        <span class="g-arrow">+</span>
+                    </summary>
+                    <div class="g-body">
+                        <p><strong>Co to jest?</strong> Niemiecki urząd zajmujący się świadczeniami rodzinnymi (głównie Kindergeld i Kinderzuschlag).</p>
+                        <p><strong>Gdzie?</strong> To część Bundesagentur für Arbeit (Federalna Agencja Pracy).</p>
+                    </div>
+                </details>
+                <details class="glossary-item">
+                    <summary>
+                        <span class="g-tag">Steuer-ID</span>
+                        <span class="g-arrow">+</span>
+                    </summary>
+                    <div class="g-body">
+                        <p><strong>Co to jest?</strong> Niemiecki numer identyfikacji podatkowej – 11-cyfrowy. Potrzebny do <strong>każdego wniosku</strong>.</p>
+                        <p><strong>Gdzie znajdę?</strong> Na pierwszej karcie podatkowej, decyzji z urzędu skarbowego, lub poproszę o przesłanie z Bundeszentralamt für Steuern.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- JAK DZIAŁAM -->
+    <section class="section steps" id="jak-dzialam">
+        <div class="container">
+            <div class="section-head">
+                <span class="eyebrow">Krok po kroku</span>
+                <h2>Jak <span class="gradient-text">współpracujemy</span></h2>
+                <p>Prosty proces – od pierwszej wiadomości do otrzymania pieniędzy z urzędu.</p>
+            </div>
+            <div class="steps-track">
+                <div class="step-item">
+                    <div class="step-num">01</div>
+                    <h3>Kontakt</h3>
+                    <p>Piszesz lub dzwonisz do mnie. W kilku zdaniach opisujesz swoją sytuację – ja odpowiadam, czy jestem w stanie pomóc.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">02</div>
+                    <h3>Konsultacja 20 min</h3>
+                    <p>Rozmawiamy o Twojej sytuacji, sprawdzam, na jakie świadczenia masz prawo i jakie dokumenty będą potrzebne.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">03</div>
+                    <h3>Zbieramy dokumenty</h3>
+                    <p>Wysyłam Ci dokładną listę – meldunek, umowy, zaświadczenia. Wszystko po polsku, krok po kroku.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">04</div>
+                    <h3>Wypełnienie wniosku</h3>
+                    <p>Wypełniam wniosek po niemiecku – bez błędów, bez braków, w taki sposób, żeby urząd nie miał uwag.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">05</div>
+                    <h3>Wysyłka i kontakt z urzędem</h3>
+                    <p>Składam wniosek, monitoruję sprawę, odpowiadam na pytania urzędu w Twoim imieniu.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">06</div>
+                    <h3>Decyzja i pieniądze</h3>
+                    <p>Otrzymujesz pozytywną decyzję, pieniądze trafiają na Twoje konto. Jeśli odmowa – pomagam z odwołaniem.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CENNIK -->
+    <section class="section pricing" id="cennik">
+        <div class="container">
+            <div class="section-head">
+                <span class="eyebrow">Bez ukrytych kosztów</span>
+                <h2>Prosty <span class="gradient-text">i uczciwy cennik</span></h2>
+                <p>Wiesz dokładnie, ile zapłacisz – bez żadnych „gwiazdeczek" i niespodzianek.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <div class="price-tag">Konsultacja</div>
+                    <div class="price-amount">25 <span>€</span></div>
+                    <div class="price-period">jednorazowo · 20 minut</div>
+                    <ul class="price-features">
+                        <li>✔ Rozmowa po polsku</li>
+                        <li>✔ Analiza Twojej sytuacji</li>
+                        <li>✔ Sprawdzenie, na co masz prawo</li>
+                        <li>✔ Lista dokumentów do przygotowania</li>
+                        <li>✔ Spotkanie online lub w biurze</li>
+                    </ul>
+                    <a href="#kontakt" class="btn btn-ghost btn-block">Umów konsultację</a>
+                </div>
+                <div class="price-card price-featured">
+                    <div class="price-badge">Najczęściej wybierane</div>
+                    <div class="price-tag">Pomoc z wnioskiem</div>
+                    <div class="price-amount">50 <span>€</span></div>
+                    <div class="price-period">za jeden wniosek</div>
+                    <ul class="price-features">
+                        <li>✔ Pełne wypełnienie wniosku</li>
+                        <li>✔ Tłumaczenie wszystkich pól</li>
+                        <li>✔ Sprawdzenie kompletności</li>
+                        <li>✔ Wysyłka do urzędu</li>
+                        <li>✔ Wsparcie do otrzymania decyzji</li>
+                        <li>✔ Pomoc przy ewentualnych pytaniach urzędu</li>
+                    </ul>
+                    <a href="#kontakt" class="btn btn-primary btn-block">Zacznijmy współpracę</a>
+                </div>
+            </div>
+            <p class="pricing-note">💡 <strong>Wskazówka:</strong> Składasz kilka wniosków naraz? Napisz do mnie – ustalimy korzystne warunki.</p>
+        </div>
+    </section>
+
+    <!-- CASE STUDIES -->
+    <section class="section cases" id="przypadki">
+        <div class="container">
+            <div class="section-head">
+                <span class="eyebrow">Realne historie</span>
+                <h2>Przypadki, w których <span class="gradient-text">mogłem pomóc</span></h2>
+                <p>Każda rodzina ma inną sytuację. Oto kilka przykładów z mojej praktyki.</p>
+            </div>
+            <div class="cases-grid">
+                <article class="case-card">
+                    <div class="case-header" style="background:linear-gradient(135deg,#4F46E5,#7C3AED)">
+                        <span class="case-tag">Kinderzuschlag + BuT</span>
+                    </div>
+                    <div class="case-body">
+                        <h3>Pani Magdalena z Hamburga</h3>
+                        <p class="case-meta">👨‍👩‍👧‍👦 Rodzina 2+2 · Kierowca + sprzątaczka</p>
+                        <p>Rodzice pracowali na pełen etat, ale nie wystarczało im do końca miesiąca. Nie wiedzieli, że mogą starać się o dodatek. Złożyłem wniosek o Kinderzuschlag.</p>
+                        <div class="case-result">
+                            <strong>Efekt:</strong> +540 € / miesiąc + darmowe obiady i bilet szkolny dla obu dzieci.
+                        </div>
+                    </div>
+                </article>
+                <article class="case-card">
+                    <div class="case-header" style="background:linear-gradient(135deg,#06B6D4,#3B82F6)">
+                        <span class="case-tag">Wohngeld</span>
+                    </div>
+                    <div class="case-body">
+                        <h3>Pan Krzysztof ze Stade</h3>
+                        <p class="case-meta">👴 Emeryt po 40 latach pracy</p>
+                        <p>Pan Krzysiek myślał, że jako emeryt nie ma prawa do żadnej pomocy. Po analizie okazało się, że jego niska emerytura uprawnia go do dopłaty do czynszu.</p>
+                        <div class="case-result">
+                            <strong>Efekt:</strong> +210 € miesięcznie do czynszu, decyzja w 6 tygodni.
+                        </div>
+                    </div>
+                </article>
+                <article class="case-card">
+                    <div class="case-header" style="background:linear-gradient(135deg,#F59E0B,#EF4444)">
+                        <span class="case-tag">Kindergeld – odwołanie</span>
+                    </div>
+                    <div class="case-body">
+                        <h3>Pani Aneta z Buxtehude</h3>
+                        <p class="case-meta">👩 Mama 3 dzieci, samodzielnie</p>
+                        <p>Familienkasse odmówiła wypłaty Kindergeld na 3 lata wstecz. Napisałem odwołanie, dołączyłem brakujące zaświadczenia z polskiego ZUS.</p>
+                        <div class="case-result">
+                            <strong>Efekt:</strong> Wypłata wstecz – 9 000 € jednorazowo + bieżące świadczenia.
+                        </div>
+                    </div>
+                </article>
+                <article class="case-card">
+                    <div class="case-header" style="background:linear-gradient(135deg,#10B981,#06B6D4)">
+                        <span class="case-tag">Wyprawka + obiady</span>
+                    </div>
+                    <div class="case-body">
+                        <h3>Państwo Nowak z Cuxhaven</h3>
+                        <p class="case-meta">👨‍👩‍👦‍👦 Rodzina 2+3, w Niemczech od 2 lat</p>
+                        <p>Świeżo po przeprowadzce, dzieci zaczynały szkołę. Złożyłem komplet wniosków: BuT, dofinansowanie obiadów i biletów dla całej trójki.</p>
+                        <div class="case-result">
+                            <strong>Efekt:</strong> 585 € na wyprawkę + darmowe posiłki i przejazdy przez cały rok szkolny.
+                        </div>
+                    </div>
+                </article>
+                <article class="case-card">
+                    <div class="case-header" style="background:linear-gradient(135deg,#EC4899,#8B5CF6)">
+                        <span class="case-tag">Kindergeld – Polska & Niemcy</span>
+                    </div>
+                    <div class="case-body">
+                        <h3>Pan Marek z Bremerhaven</h3>
+                        <p class="case-meta">👨 Pracuje w DE, dzieci w PL</p>
+                        <p>Skomplikowany przypadek – żona pobierała 800+ w Polsce. Skoordynowałem dokumenty z ZUS i Familienkasse, żeby uniknąć podwójnego pobierania.</p>
+                        <div class="case-result">
+                            <strong>Efekt:</strong> Różnicowy Kindergeld 180 € / mies. zgodnie z prawem UE.
+                        </div>
+                    </div>
+                </article>
+                <article class="case-card">
+                    <div class="case-header" style="background:linear-gradient(135deg,#6366F1,#EC4899)">
+                        <span class="case-tag">Wohngeld + BuT</span>
+                    </div>
+                    <div class="case-body">
+                        <h3>Pani Joanna z Hannover</h3>
+                        <p class="case-meta">👩‍🦰 Samotna mama, 1 dziecko</p>
+                        <p>Po rozwodzie wynajmowała drogie mieszkanie w mieście. Dzięki Wohngeld i BuT odzyskała stabilność finansową dla siebie i syna.</p>
+                        <div class="case-result">
+                            <strong>Efekt:</strong> +320 € do czynszu + opłacone obiady i korepetycje w szkole.
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- OPINIE -->
+    <section class="section testimonials" id="opinie">
+        <div class="container">
+            <div class="section-head">
+                <span class="eyebrow">Co mówią klienci</span>
+                <h2>Opinie <span class="gradient-text">moich klientów</span></h2>
+                <p>Najlepsza reklama to zadowoleni ludzie.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p>„Pierwszy raz spotkałam kogoś, kto wytłumaczył mi te wszystkie niemieckie papierki tak, że zrozumiałam wszystko. Wniosek o Kinderzuschlag złożony w 2 dni, decyzja po miesiącu. Polecam każdej polskiej mamie!"</p>
+                    <div class="t-author">
+                        <div class="t-avatar" style="background:#F472B6">A</div>
+                        <div>
+                            <strong>Anna K.</strong>
+                            <span>Hamburg</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p>„Próbowałem sam wypełnić Wohngeld – urząd 3 razy odsyłał z brakami. Pani z AllesKlarService zrobiła to w godzinę i decyzja przyszła pozytywna. Warte każdego euro!"</p>
+                    <div class="t-author">
+                        <div class="t-avatar" style="background:#60A5FA">P</div>
+                        <div>
+                            <strong>Piotr M.</strong>
+                            <span>Stade</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p>„Konkretnie, szybko, profesjonalnie. Dostałam 9 tys. euro Kindergeld wstecz dzięki napisanemu odwołaniu. Przez 3 lata myślałam że nie mam prawa. Wielkie dzięki!"</p>
+                    <div class="t-author">
+                        <div class="t-avatar" style="background:#FBBF24">M</div>
+                        <div>
+                            <strong>Marta W.</strong>
+                            <span>Buxtehude</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p>„Bardzo cierpliwie tłumaczyła mi każdy szczegół. Czułem się komfortowo i miałem pewność, że wszystko jest robione poprawnie. Już polecam całej rodzinie."</p>
+                    <div class="t-author">
+                        <div class="t-avatar" style="background:#34D399">T</div>
+                        <div>
+                            <strong>Tomasz L.</strong>
+                            <span>Bremerhaven</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p>„Załatwione wszystko: wyprawka, obiady, bilet szkolny dla dwójki dzieci. Zero stresu, zero biurokracji po mojej stronie. Cena bardzo uczciwa za taką pracę."</p>
+                    <div class="t-author">
+                        <div class="t-avatar" style="background:#A78BFA">K</div>
+                        <div>
+                            <strong>Katarzyna B.</strong>
+                            <span>Cuxhaven</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p>„Mieszkam w Niemczech od roku i cała ta biurokracja mnie przerastała. Dzięki AllesKlarService odzyskałem spokój. Człowiek wie, że ktoś za niego pilnuje urzędu."</p>
+                    <div class="t-author">
+                        <div class="t-avatar" style="background:#F87171">G</div>
+                        <div>
+                            <strong>Grzegorz S.</strong>
+                            <span>Hannover</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- POZNAJ MNIE -->
+    <section class="section meet" id="poznaj-mnie">
+        <div class="container">
+            <div class="meet-wrap">
+                <div class="meet-photo">
+                    <div class="meet-photo-glow" aria-hidden="true"></div>
+                    <img src="ja2.png" alt="Andrzej — AllesKlarService Stade" />
+                    <a href="https://wa.me/4915510247160?text=Cze%C5%9B%C4%87%20Andrzej%21%20Pisz%C4%99%20do%20Ciebie%20w%20sprawie%20pomocy%20z%20wnioskami."
+                       target="_blank" rel="noopener noreferrer"
+                       class="portrait-wa portrait-wa-meet"
+                       aria-label="Napisz na WhatsApp"
+                       title="Napisz na WhatsApp">
+                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M16.003 0C7.17 0 0 7.169 0 16c0 2.825.737 5.583 2.139 8.002L0 32l8.207-2.156A15.95 15.95 0 0 0 16.003 32C24.832 32 32 24.831 32 16S24.832 0 16.003 0zm0 29.333c-2.46 0-4.882-.661-7.001-1.911l-.502-.298-4.872 1.281 1.299-4.747-.327-.518A13.27 13.27 0 0 1 2.667 16c0-7.353 5.983-13.333 13.336-13.333S29.333 8.647 29.333 16 23.356 29.333 16.003 29.333zM23.32 19.27c-.4-.2-2.367-1.167-2.733-1.3-.367-.133-.633-.2-.9.2s-1.033 1.3-1.267 1.567-.467.3-.867.1c-.4-.2-1.689-.622-3.218-1.985-1.19-1.061-1.99-2.37-2.224-2.77-.234-.4-.025-.616.175-.815.18-.18.4-.467.6-.7.2-.234.267-.4.4-.667.133-.267.067-.5-.033-.7-.1-.2-.9-2.167-1.233-2.967-.323-.78-.65-.673-.9-.685-.234-.012-.5-.014-.767-.014a1.47 1.47 0 0 0-1.067.5c-.367.4-1.4 1.367-1.4 3.333 0 1.967 1.433 3.867 1.633 4.133.2.267 2.821 4.31 6.84 6.041 2.41 1.04 3.355 1.13 4.555 1.001 1.029-.115 2.367-.967 2.7-1.901.333-.933.333-1.733.234-1.901-.1-.167-.367-.267-.767-.467z"/>
+                        </svg>
+                        <span class="portrait-wa-label">Napisz!</span>
+                    </a>
+                </div>
+                <div class="meet-text">
+                    <span class="eyebrow">Poznajmy się</span>
+                    <h2>Cześć! Jestem <span class="gradient-text">Andrzej</span></h2>
+                    <p class="meet-lead">
+                        Od lat pomagam Polakom mieszkającym w Niemczech rozumieć urzędowe formalności i odzyskiwać pieniądze, które się im należą — <strong>po polsku, bez stresu i bez błędów we wnioskach</strong>.
+                    </p>
+                    <p>
+                        Wierzę, że każda rodzina zasługuje na konkretną pomoc, a nie na zagubienie w niemieckich papierach. Dlatego wszystko tłumaczę spokojnie, krok po kroku, i prowadzę sprawę aż do pozytywnej decyzji urzędu.
+                    </p>
+                    <ul class="meet-list">
+                        <li>✅ <strong>500+ złożonych wniosków</strong> z 98% pozytywnych decyzji</li>
+                        <li>✅ <strong>Po polsku</strong> — żadnej bariery językowej</li>
+                        <li>✅ Biuro w <strong>Stade</strong>, ale obsługuję klientów w całych Niemczech</li>
+                        <li>✅ <strong>Pierwsza wiadomość darmowa</strong> — sprawdzamy razem, czy mogę pomóc</li>
+                    </ul>
+                    <div class="meet-cta">
+                        <a href="https://wa.me/4915510247160?text=Cze%C5%9B%C4%87%20Andrzej%21%20Chcia%C5%82%28a%29bym%20zapyta%C4%87%20o%20pomoc."
+                           target="_blank" rel="noopener noreferrer"
+                           class="btn btn-wa">
+                            <svg viewBox="0 0 32 32" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M16.003 0C7.17 0 0 7.169 0 16c0 2.825.737 5.583 2.139 8.002L0 32l8.207-2.156A15.95 15.95 0 0 0 16.003 32C24.832 32 32 24.831 32 16S24.832 0 16.003 0zm0 29.333c-2.46 0-4.882-.661-7.001-1.911l-.502-.298-4.872 1.281 1.299-4.747-.327-.518A13.27 13.27 0 0 1 2.667 16c0-7.353 5.983-13.333 13.336-13.333S29.333 8.647 29.333 16 23.356 29.333 16.003 29.333zM23.32 19.27c-.4-.2-2.367-1.167-2.733-1.3-.367-.133-.633-.2-.9.2s-1.033 1.3-1.267 1.567-.467.3-.867.1c-.4-.2-1.689-.622-3.218-1.985-1.19-1.061-1.99-2.37-2.224-2.77-.234-.4-.025-.616.175-.815.18-.18.4-.467.6-.7.2-.234.267-.4.4-.667.133-.267.067-.5-.033-.7-.1-.2-.9-2.167-1.233-2.967-.323-.78-.65-.673-.9-.685-.234-.012-.5-.014-.767-.014a1.47 1.47 0 0 0-1.067.5c-.367.4-1.4 1.367-1.4 3.333 0 1.967 1.433 3.867 1.633 4.133.2.267 2.821 4.31 6.84 6.041 2.41 1.04 3.355 1.13 4.555 1.001 1.029-.115 2.367-.967 2.7-1.901.333-.933.333-1.733.234-1.901-.1-.167-.367-.267-.767-.467z"/></svg>
+                            Napisz na WhatsApp
+                        </a>
+                        <a href="#kontakt" class="btn btn-ghost">Albo wyślij formularz ↓</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section class="section contact" id="kontakt">
+        <div class="container">
+            <div class="contact-wrap">
+                <div class="contact-info">
+                    <span class="eyebrow">Skontaktuj się ze mną</span>
+                    <h2>Załatwmy<br>Twoją sprawę <span class="gradient-text">razem</span></h2>
+                    <p>Napisz na WhatsApp – odpowiadam zazwyczaj tego samego dnia. Pierwsza wiadomość jest darmowa.</p>
+                    <div class="contact-list">
+                        <a href="https://wa.me/4915510247160" target="_blank" rel="noopener noreferrer" class="contact-item">
+                            <div class="contact-ico contact-ico-wa" aria-hidden="true">
+                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.003 0C7.17 0 0 7.169 0 16c0 2.825.737 5.583 2.139 8.002L0 32l8.207-2.156A15.95 15.95 0 0 0 16.003 32C24.832 32 32 24.831 32 16S24.832 0 16.003 0zm0 29.333c-2.46 0-4.882-.661-7.001-1.911l-.502-.298-4.872 1.281 1.299-4.747-.327-.518A13.27 13.27 0 0 1 2.667 16c0-7.353 5.983-13.333 13.336-13.333S29.333 8.647 29.333 16 23.356 29.333 16.003 29.333zM23.32 19.27c-.4-.2-2.367-1.167-2.733-1.3-.367-.133-.633-.2-.9.2s-1.033 1.3-1.267 1.567-.467.3-.867.1c-.4-.2-1.689-.622-3.218-1.985-1.19-1.061-1.99-2.37-2.224-2.77-.234-.4-.025-.616.175-.815.18-.18.4-.467.6-.7.2-.234.267-.4.4-.667.133-.267.067-.5-.033-.7-.1-.2-.9-2.167-1.233-2.967-.323-.78-.65-.673-.9-.685-.234-.012-.5-.014-.767-.014a1.47 1.47 0 0 0-1.067.5c-.367.4-1.4 1.367-1.4 3.333 0 1.967 1.433 3.867 1.633 4.133.2.267 2.821 4.31 6.84 6.041 2.41 1.04 3.355 1.13 4.555 1.001 1.029-.115 2.367-.967 2.7-1.901.333-.933.333-1.733.234-1.901-.1-.167-.367-.267-.767-.467z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <span>WhatsApp</span>
+                                <strong>+49 155 10247160</strong>
+                            </div>
+                        </a>
+                        <div class="contact-item">
+                            <div class="contact-ico">📍</div>
+                            <div>
+                                <span>Adres biura</span>
+                                <strong>Lönsweg 30<br>21680 Stade</strong>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-ico">🕐</div>
+                            <div>
+                                <span>Godziny otwarcia</span>
+                                <strong>Pn–Pt: 9:00 – 18:00<br>Sb: 10:00 – 14:00</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm" action="send.php" method="POST">
+                    <h3>Napisz do mnie</h3>
+                    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+                    <label>
+                        <span>Imię i nazwisko</span>
+                        <input type="text" name="name" required placeholder="Jan Kowalski">
+                    </label>
+                    <label>
+                        <span>Telefon lub e-mail</span>
+                        <input type="text" name="contact" required placeholder="+49 ... lub email@example.com">
+                    </label>
+                    <label>
+                        <span>W czym mogę pomóc?</span>
+                        <select name="topic" required>
+                            <option value="">Wybierz...</option>
+                            <option>Kindergeld</option>
+                            <option>Kinderzuschlag</option>
+                            <option>Wohngeld</option>
+                            <option>Wyprawka szkolna</option>
+                            <option>Dofinansowanie obiadów</option>
+                            <option>Bilet szkolny</option>
+                            <option>Konsultacja ogólna</option>
+                            <option>Inne</option>
+                        </select>
+                    </label>
+                    <label>
+                        <span>Opisz krótko swoją sytuację</span>
+                        <textarea name="message" rows="4" placeholder="Mieszkam w Niemczech od ... mam ... dzieci ..."></textarea>
+                    </label>
+                    <button type="submit" class="btn btn-primary btn-block" id="contactSubmit">Wyślij wiadomość →</button>
+                    <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="#hero" class="logo-link">
+                        <img src="logo.svg" alt="AllesKlarService" class="logo-img">
+                        <span class="logo-text">AllesKlar<span class="logo-accent">Service</span></span>
+                    </a>
+                    <p class="footer-about">Profesjonalna pomoc dla Polaków w Niemczech w sprawach urzędowych. Wnioski o świadczenia rodzinne i socjalne.</p>
+                </div>
+                <div>
+                    <h4>Usługi</h4>
+                    <ul>
+                        <li><a href="#uslugi">Kindergeld</a></li>
+                        <li><a href="#uslugi">Kinderzuschlag</a></li>
+                        <li><a href="#uslugi">Wohngeld</a></li>
+                        <li><a href="#uslugi">Wyprawka szkolna</a></li>
+                        <li><a href="#uslugi">Dofinansowanie obiadów</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Firma</h4>
+                    <ul>
+                        <li><a href="#jak-dzialam">Jak działam</a></li>
+                        <li><a href="#cennik">Cennik</a></li>
+                        <li><a href="#przypadki">Case studies</a></li>
+                        <li><a href="#opinie">Opinie</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Kontakt</h4>
+                    <ul>
+                        <li>Lönsweg 30</li>
+                        <li>21680 Stade</li>
+                        <li><a href="https://wa.me/4915510247160" target="_blank" rel="noopener noreferrer">WhatsApp: +49 155 10247160</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 AllesKlarService – Wszelkie prawa zastrzeżone</span>
+                <span>Made with ❤ for Polish community in Germany</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

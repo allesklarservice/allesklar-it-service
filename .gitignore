@@ -1,0 +1,52 @@
+# ===== SEKRETY — NIGDY NIE COMMITOWAĆ =====
+# Konfiguracja SMTP z hasłem (lokalnie / na hostingu)
+smtp_config.php
+smtp_config.local.php
+smtp/*.mobileconfig
+
+# Zmienne środowiskowe (klucze Anthropic, Stripe itp.)
+.env
+.env.local
+.env.development.local
+.env.production.local
+.env.*.local
+
+# Vercel
+.vercel/
+.vercel.json.local
+
+# ===== ZALEŻNOŚCI =====
+node_modules/
+package-lock.json.bak
+
+# ===== EDYTORY / SYSTEMY =====
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+.idea/
+.vscode/
+*.sublime-*
+
+# ===== LOGI / TYMCZASOWE =====
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+
+# ===== BUDOWANIE =====
+dist/
+build/
+.next/
+.cache/
+
+# ===== INNE =====
+*.bak
+*.backup
+.history/
+
+# Claude Code lokalne ustawienia
+.claude/
+CLAUDE.md.local
