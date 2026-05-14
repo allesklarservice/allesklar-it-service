@@ -22,6 +22,94 @@ const RULES_2026 = [
     'wohngeld_coverage_pct'      => 0.50,
 ];
 
+/**
+ * Określa Mietstufe (I-VII) na podstawie nazwy miasta i kategorii wielkości.
+ * Najpierw szuka miasta w tabeli popularnych miejscowości — jeśli znajdzie,
+ * zwraca konkretną Mietstufe. Jeśli nie, mapuje z kategorii wielkości.
+ */
+function infer_mietstufe(string $regionTyp, string $miastoNazwa): int
+{
+    $city = mb_strtolower(trim($miastoNazwa));
+    if ($city !== '') {
+        // Tabela popularnych miast → Mietstufe (przybliżone na 2026)
+        $cityMap = [
+            // Mietstufe VII — najdroższe
+            'münchen' => 7, 'munchen' => 7, 'munich' => 7,
+            'frankfurt am main' => 7, 'frankfurt' => 7,
+            // Mietstufe VI
+            'hamburg' => 6,
+            'düsseldorf' => 6, 'dusseldorf' => 6,
+            'stuttgart' => 6,
+            'wiesbaden' => 6,
+            'mainz' => 6,
+            'freiburg' => 6,
+            'heidelberg' => 6,
+            'darmstadt' => 6,
+            'ingolstadt' => 6,
+            // Mietstufe V
+            'berlin' => 5,
+            'köln' => 5, 'koln' => 5, 'cologne' => 5,
+            'bonn' => 5,
+            'dortmund' => 5,
+            'leipzig' => 5,
+            'karlsruhe' => 5,
+            'regensburg' => 5,
+            'erlangen' => 5,
+            // Mietstufe IV
+            'essen' => 4,
+            'bremen' => 4,
+            'hannover' => 4,
+            'nürnberg' => 4, 'nurnberg' => 4,
+            'mannheim' => 4,
+            'augsburg' => 4,
+            'aachen' => 4,
+            'kiel' => 4,
+            'lübeck' => 4, 'lubeck' => 4,
+            'rostock' => 4,
+            'magdeburg' => 4,
+            'duisburg' => 4,
+            'bochum' => 4,
+            'wuppertal' => 4,
+            'bielefeld' => 4,
+            'münster' => 4, 'munster' => 4,
+            // Mietstufe III — średnie i okoliczne miasta
+            'stade' => 3,
+            'cuxhaven' => 3,
+            'lüneburg' => 3, 'luneburg' => 3,
+            'bremerhaven' => 3,
+            'oldenburg' => 3,
+            'wolfsburg' => 3,
+            'osnabrück' => 3, 'osnabruck' => 3,
+            'paderborn' => 3,
+            'hildesheim' => 3,
+            'erfurt' => 3,
+            'dresden' => 3,
+            'chemnitz' => 3,
+            // Mietstufe II — mniejsze miasta na wschodzie / niektóre NRW
+            'cottbus' => 2,
+            'gera' => 2,
+            'plauen' => 2,
+            'görlitz' => 2, 'gorlitz' => 2,
+            'recklinghausen' => 2,
+            'bocholt' => 2,
+        ];
+        foreach ($cityMap as $needle => $stufe) {
+            if (str_contains($city, $needle)) {
+                return $stufe;
+            }
+        }
+    }
+
+    // Fallback: mapowanie z kategorii wielkości
+    return match ($regionTyp) {
+        'wies'    => 1,
+        'male'    => 2,
+        'srednie' => 4,
+        'duze'    => 6,
+        default   => 3,
+    };
+}
+
 function calculate_eligibility(array $input): array
 {
     $sytuacja          = trim((string)($input['sytuacja']   ?? ''));

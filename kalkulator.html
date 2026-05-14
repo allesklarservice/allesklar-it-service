@@ -8,8 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="kalkulator.css">
+    <link rel="stylesheet" href="styles.css?v=20260514c">
+    <link rel="stylesheet" href="kalkulator.css?v=20260514c">
     <link rel="icon" type="image/svg+xml" href="logo.svg">
 </head>
 <body>
@@ -182,17 +182,35 @@
             </div>
 
             <div class="form-field">
-                <label for="miasto">Twoje miasto / region</label>
-                <select id="miasto">
-                    <option value="">-- wybierz --</option>
-                    <option value="1">Mała wieś (Mietstufe I) – np. wschodnia Saksonia</option>
-                    <option value="2">Mniejsze miasto (Mietstufe II) – np. małe miasta NRW</option>
-                    <option value="3">Stade, Cuxhaven, Lüneburg (Mietstufe III)</option>
-                    <option value="4">Hannover, Bremen (Mietstufe IV)</option>
-                    <option value="5">Hamburg-okolice, Köln (Mietstufe V)</option>
-                    <option value="6">Hamburg-Mitte, München, Frankfurt (Mietstufe VI-VII)</option>
-                </select>
-                <small>Nie znasz Mietstufe? Wpisz miasto a AI dopasuje.</small>
+                <label>Wielkość miejscowości</label>
+                <div class="tile-grid tile-grid-2" data-field="region_typ">
+                    <button class="tile tile-sm" onclick="selectTile(this, 'wies')">
+                        <div class="tile-icon" style="background:#DCFCE7;color:#16A34A">🏡</div>
+                        <h3>Wieś / wioska</h3>
+                        <p>do 10 tys. mieszkańców</p>
+                    </button>
+                    <button class="tile tile-sm" onclick="selectTile(this, 'male')">
+                        <div class="tile-icon" style="background:#FEF3C7;color:#D97706">🏘️</div>
+                        <h3>Małe miasto</h3>
+                        <p>10–50 tys.</p>
+                    </button>
+                    <button class="tile tile-sm" onclick="selectTile(this, 'srednie')">
+                        <div class="tile-icon" style="background:#ECFEFF;color:#06B6D4">🏙️</div>
+                        <h3>Średnie miasto</h3>
+                        <p>50–300 tys.</p>
+                    </button>
+                    <button class="tile tile-sm" onclick="selectTile(this, 'duze')">
+                        <div class="tile-icon" style="background:#FCE7F3;color:#DB2777">🌆</div>
+                        <h3>Duże miasto</h3>
+                        <p>Hamburg, Berlin, München itp.</p>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label for="miasto-nazwa">Nazwa miasta (opcjonalnie — pomaga AI dokładniej dopasować)</label>
+                <input type="text" id="miasto-nazwa" placeholder="np. Stade, Hamburg, Hannover" maxlength="80">
+                <small>Jeśli wpiszesz konkretne miasto, AI rozpozna jego Mietstufe i policzy precyzyjniej niż z samej kategorii.</small>
             </div>
 
             <div class="form-field">
@@ -525,6 +543,6 @@
         </div>
     </footer>
 
-    <script src="kalkulator.js"></script>
+    <script src="kalkulator.js?v=20260514c"></script>
 </body>
 </html>

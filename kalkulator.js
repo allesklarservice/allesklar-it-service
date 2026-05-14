@@ -12,7 +12,8 @@ const state = {
     sytuacja: null,
     mieszkanie: null,
     czynsz: 0,
-    mietstufe: 3,
+    region_typ: 'srednie',
+    miasto_nazwa: '',
     osoby: 1,
     liczba_dzieci: 0,
     kindergeld: false,
@@ -64,23 +65,14 @@ function selectTile(el, value) {
 
 // ============ ZBIERANIE INPUTÓW ============
 function captureInputs() {
-    const czynsz = parseFloat(document.getElementById('czynsz')?.value) || 0;
-    const mietstufe = parseInt(document.getElementById('miasto')?.value, 10) || 3;
-    const osoby = parseInt(document.getElementById('osoby')?.value, 10) || 1;
-    const liczbaDzieci = parseInt(document.getElementById('liczba-dzieci')?.value, 10) || 0;
-    const dochod1 = parseFloat(document.getElementById('dochod-1')?.value) || 0;
-    const dochod2 = parseFloat(document.getElementById('dochod-2')?.value) || 0;
-    const dochodInne = parseFloat(document.getElementById('dochod-inne')?.value) || 0;
-    const email = document.getElementById('email')?.value || '';
-
-    state.czynsz = czynsz;
-    state.mietstufe = mietstufe;
-    state.osoby = osoby;
-    state.liczba_dzieci = liczbaDzieci;
-    state.dochod_1 = dochod1;
-    state.dochod_2 = dochod2;
-    state.dochod_inne = dochodInne;
-    state.email = email;
+    state.czynsz       = parseFloat(document.getElementById('czynsz')?.value) || 0;
+    state.osoby        = parseInt(document.getElementById('osoby')?.value, 10) || 1;
+    state.liczba_dzieci= parseInt(document.getElementById('liczba-dzieci')?.value, 10) || 0;
+    state.dochod_1     = parseFloat(document.getElementById('dochod-1')?.value) || 0;
+    state.dochod_2     = parseFloat(document.getElementById('dochod-2')?.value) || 0;
+    state.dochod_inne  = parseFloat(document.getElementById('dochod-inne')?.value) || 0;
+    state.email        = document.getElementById('email')?.value || '';
+    state.miasto_nazwa = (document.getElementById('miasto-nazwa')?.value || '').trim().substring(0, 80);
 }
 
 // ============ PRZEJŚCIE Z KAŻDEGO KROKU ============
