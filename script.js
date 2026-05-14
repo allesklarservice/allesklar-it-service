@@ -112,3 +112,26 @@ if (contactForm) {
         }
     });
 }
+
+// ============ PŁATNOŚĆ ZA USŁUGĘ Z STRONY GŁÓWNEJ (cennik) ============
+// Klik w "Zapłać 25 € i umów" w sekcji #cennik tworzy Stripe Session
+// i przekierowuje na bezpieczną stronę płatności.
+async function payService(serviceId, event) {
+    if (event) event.preventDefault();
+    const btn = event ? event.currentTarget : null;
+    const originalText = btn ? btn.textContent : '';
+    if (btn) { btn.style.pointerEvents = 'none'; btn.textContent = '⏳ Łączę...'; }
+    try {
+        const r = await fetch('/api/create-service-checkout.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ service: serviceId })
+        });
+        const data = await r.json();
+        if (!data.success || !data.url) throw new Error(data.message || 'Błąd płatności');
+        window.location.href = data.url;
+    } catch (err) {
+        alert('Płatność nie wystartowała: ' + err.message + '\n\nSpróbuj jeszcze raz albo napisz na WhatsApp +49 155 10247160.');
+        if (btn) { btn.style.pointerEvents = ''; btn.textContent = originalText; }
+    }
+}

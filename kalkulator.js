@@ -131,6 +131,40 @@ async function submitCalculation() {
     }
 }
 
+// ============ PŁATNOŚĆ ZA USŁUGĘ (z ekranu wyniku) ============
+// Wywoływane z kafelków: Konsultacja 25€, Wniosek Wohngeld 50€,
+// Wniosek Kinderzuschlag 50€, Oba wnioski 80€.
+async function payForService(serviceId, event) {
+    if (event) event.preventDefault();
+
+    const tile = event ? event.currentTarget : null;
+    if (tile) {
+        tile.style.pointerEvents = 'none';
+        tile.style.opacity = '0.6';
+    }
+
+    try {
+        const response = await fetch('/api/create-service-checkout.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ service: serviceId, email: state.email || '' })
+        });
+
+        const data = await response.json();
+        if (!data.success || !data.url) {
+            throw new Error(data.message || 'Nie udało się utworzyć sesji płatności.');
+        }
+        window.location.href = data.url;
+    } catch (err) {
+        console.error(err);
+        alert('Płatność nie wystartowała: ' + err.message + '\n\nSpróbuj jeszcze raz albo napisz do nas na WhatsApp.');
+        if (tile) {
+            tile.style.pointerEvents = '';
+            tile.style.opacity = '';
+        }
+    }
+}
+
 // ============ POWRÓT Z STRIPE ============
 // Wywoływane przy starcie strony (DOMContentLoaded). Sprawdza URL parametry.
 async function checkPostPayment() {
