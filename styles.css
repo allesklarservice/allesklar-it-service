@@ -1647,3 +1647,81 @@ a.contact-item:hover .contact-ico-wa {
     .hero-fc-top { top: -6px; }
     .hero-fc-bottom { bottom: 30px; }
 }
+
+/* ========== Kalkulator AI: highlight w menu + hero banner ========== */
+.nav-menu a.nav-highlight {
+    background: var(--gradient);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-weight: 700;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.nav-menu a.nav-highlight:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+    color: white;
+}
+
+.hero-ai-banner {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: linear-gradient(135deg, #EEF2FF 0%, #ECFEFF 50%, #FCE7F3 100%);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    margin-top: 28px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+}
+.hero-ai-banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius);
+    padding: 2px;
+    background: var(--gradient);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+}
+.hero-ai-banner:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+.hero-ai-banner-icon {
+    font-size: 36px;
+    flex-shrink: 0;
+}
+.hero-ai-banner-body {
+    flex: 1;
+    min-width: 0;
+}
+.hero-ai-banner-body strong {
+    display: block;
+    font-size: 15px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+}
+.hero-ai-banner-body span {
+    font-size: 13px;
+    color: var(--text-soft);
+}
+.hero-ai-banner-arrow {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--primary);
+    flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+    .hero-ai-banner { padding: 14px 16px; gap: 12px; }
+    .hero-ai-banner-icon { font-size: 28px; }
+    .hero-ai-banner-body strong { font-size: 14px; }
+}

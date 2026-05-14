@@ -4,6 +4,9 @@ smtp_config.php
 smtp_config.local.php
 smtp/*.mobileconfig
 
+# Konfiguracja API (klucze Stripe + Claude — generowane przez workflow z secrets)
+api/api_keys.php
+
 # Zmienne środowiskowe (klucze Anthropic, Stripe itp.)
 .env
 .env.local

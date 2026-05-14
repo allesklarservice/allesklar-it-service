@@ -53,6 +53,32 @@ jobs:
           '
           echo "smtp_config.php zapisany ($(wc -c < smtp_config.php) bajtów)"
 
+      # Generuj api/api_keys.php z GitHub Secrets — klucze Stripe + Claude.
+      # Plik trafia tylko na hosting, nigdy do repo (jest w .gitignore).
+      - name: 🔐 Wygeneruj api/api_keys.php (Stripe + Claude)
+        env:
+          STRIPE_SECRET_KEY:       ${{ secrets.STRIPE_SECRET_KEY }}
+          STRIPE_PUBLISHABLE_KEY:  ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
+          STRIPE_WEBHOOK_SECRET:   ${{ secrets.STRIPE_WEBHOOK_SECRET }}
+          ANTHROPIC_API_KEY:       ${{ secrets.ANTHROPIC_API_KEY }}
+          STRIPE_PRICE_AMOUNT:     ${{ secrets.STRIPE_PRICE_AMOUNT || vars.STRIPE_PRICE_AMOUNT || '499' }}
+          SITE_URL:                ${{ secrets.SITE_URL || vars.SITE_URL || 'https://allesklar-it-service.de' }}
+        run: |
+          mkdir -p api
+          php -r '
+            $c = [
+              "stripe_secret_key"      => getenv("STRIPE_SECRET_KEY")      ?: "",
+              "stripe_publishable_key" => getenv("STRIPE_PUBLISHABLE_KEY") ?: "",
+              "stripe_webhook_secret"  => getenv("STRIPE_WEBHOOK_SECRET")  ?: "",
+              "anthropic_api_key"      => getenv("ANTHROPIC_API_KEY")      ?: "",
+              "stripe_price_amount"    => (int) (getenv("STRIPE_PRICE_AMOUNT") ?: 499),
+              "stripe_currency"        => "eur",
+              "site_url"               => getenv("SITE_URL") ?: "https://allesklar-it-service.de",
+            ];
+            file_put_contents("api/api_keys.php", "<?php\n// Generowane automatycznie przy deploy z GitHub Secrets — nie edytować ręcznie.\nreturn " . var_export($c, true) . ";\n");
+          '
+          echo "api/api_keys.php zapisany ($(wc -c < api/api_keys.php) bajtów)"
+
       # Dla bezpieczeństwa: trzymamy też zbudowany "snapshot" jako artefakt
       # GitHuba przez 7 dni — gdyby FTP padł, można pobrać i wgrać ręcznie.
       - name: 💾 Zapisz pliki jako artefakt (backup)

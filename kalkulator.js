@@ -89,42 +89,85 @@ function nextStep(targetScreen) {
     goToScreen(targetScreen);
 }
 
-// ============ WYSYŁKA DO API + POKAZANIE WYNIKU ============
-// W iteracji 1 — bezpośrednio po kliknięciu "Zapłać" (bez Stripe).
-// W iteracji 2 — najpierw Stripe Checkout, po powrocie wywołanie API.
+// ============ WYSYŁKA DO STRIPE CHECKOUT ============
+// Klik "Zapłać" → tworzy Stripe Session w backendzie → redirect na URL Stripe.
+// Po zapłaceniu Stripe wraca na /kalkulator.html?session_id=... →
+// fetchAndRenderResult() poniżej.
 async function submitCalculation() {
     captureInputs();
 
     const btn = document.getElementById('payBtn');
     if (btn) {
         btn.disabled = true;
-        btn.textContent = '⏳ Liczę...';
+        btn.textContent = '⏳ Łączę z płatnością...';
     }
 
     try {
-        const response = await fetch('/api/calculate.php', {
+        const response = await fetch('/api/create-checkout.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(state)
         });
 
         if (!response.ok) {
-            throw new Error('Błąd serwera: ' + response.status);
+            const errBody = await response.json().catch(() => ({}));
+            throw new Error(errBody.message || ('Błąd serwera: ' + response.status));
         }
 
         const data = await response.json();
-        if (!data.success) {
-            throw new Error(data.message || 'Błąd obliczeń');
+        if (!data.success || !data.url) {
+            throw new Error(data.message || 'Nie udało się utworzyć sesji płatności.');
         }
 
-        renderResults(data);
-        goToScreen(6);
+        // Przekierowanie na Stripe Checkout
+        window.location.href = data.url;
     } catch (err) {
         console.error(err);
-        alert('Coś poszło nie tak: ' + err.message + '\n\nSpróbuj odświeżyć stronę.');
+        alert('Płatność nie wystartowała: ' + err.message + '\n\nSpróbuj jeszcze raz.');
         if (btn) {
             btn.disabled = false;
             btn.textContent = '🔒 Zapłać 4,99 € przez Stripe →';
+        }
+    }
+}
+
+// ============ POWRÓT Z STRIPE ============
+// Wywoływane przy starcie strony (DOMContentLoaded). Sprawdza URL parametry.
+async function checkPostPayment() {
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get('canceled') === '1') {
+        // Użytkownik przerwał Stripe — wracamy na ekran 5 z komunikatem
+        goToScreen(5);
+        setTimeout(() => {
+            alert('Płatność została anulowana. Możesz spróbować jeszcze raz.');
+        }, 100);
+        return;
+    }
+
+    const sessionId = params.get('session_id');
+    if (!sessionId) return;
+
+    // Mamy session_id — pobieramy wynik
+    goToScreen(6);
+    const aiEl = document.getElementById('ai-comment-body');
+    if (aiEl) aiEl.innerHTML = '<p>⏳ Ładuję Twój spersonalizowany wynik...</p>';
+
+    try {
+        const response = await fetch('/api/get-result.php?session_id=' + encodeURIComponent(sessionId));
+        const data = await response.json();
+
+        if (!data.success) {
+            throw new Error(data.message || 'Nie udało się pobrać wyniku.');
+        }
+
+        renderResults(data);
+    } catch (err) {
+        console.error(err);
+        if (aiEl) {
+            aiEl.innerHTML = '<p style="color:#DC2626"><strong>⚠️ Błąd:</strong> ' + escapeHtml(err.message)
+                + '</p><p>Jeśli płatność się powiodła, napisz do nas na WhatsApp +49 155 10247160 z numerem '
+                + 'sesji <code>' + escapeHtml(sessionId) + '</code> — wyślemy Ci wynik ręcznie.</p>';
         }
     }
 }
@@ -160,11 +203,34 @@ function renderResults(data) {
     const kReasonsEl = document.getElementById('result-kiz-reasons');
     if (kReasonsEl) kReasonsEl.innerHTML = kReasonsHtml;
 
-    // AI komentarz — placeholder (iteracja 3 podłączy Claude API)
+    // AI komentarz — z Claude API (z fallbackiem do lokalnego szablonu jeśli
+    // backend nie zdążył / nie ma klucza Anthropic).
     const aiEl = document.getElementById('ai-comment-body');
     if (aiEl) {
-        aiEl.innerHTML = buildPlaceholderComment(data);
+        if (data.ai_comment && typeof data.ai_comment === 'string' && data.ai_comment.trim() !== '') {
+            // Komentarz z Claude — surowy tekst, formatujemy na akapity
+            aiEl.innerHTML = formatClaudeComment(data.ai_comment);
+        } else {
+            // Fallback lokalny
+            aiEl.innerHTML = buildPlaceholderComment(data);
+        }
     }
+}
+
+// Z surowego tekstu Claude robi HTML — paragrafy i pogrubienia.
+function formatClaudeComment(text) {
+    return text
+        .split(/\n\n+/)
+        .map(p => p.trim())
+        .filter(p => p.length > 0)
+        .map(p => {
+            // **bold** → <strong>bold</strong>
+            const formatted = escapeHtml(p)
+                .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+                .replace(/\n/g, '<br>');
+            return '<p>' + formatted + '</p>';
+        })
+        .join('\n');
 }
 
 // ============ POMOCNICZE ============
@@ -241,4 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.scrollY > 20) nav.classList.add('scrolled');
         else nav.classList.remove('scrolled');
     });
+
+    // Sprawdź czy wracamy z Stripe Checkout
+    checkPostPayment();
 });
