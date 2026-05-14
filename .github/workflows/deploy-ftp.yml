@@ -1,0 +1,111 @@
+name: Deploy na seohost (FTPS)
+
+# Każdy push do gałęzi 'main' automatycznie wgrywa pliki strony na seohost
+# przez FTPS (FTP po TLS, port 21) używając lftp. Dodatkowo workflow generuje
+# smtp_config.php z GitHub Secrets — hasło SMTP nigdy nie pojawia się w repo.
+# Można też uruchomić ręcznie z zakładki Actions ("Run workflow").
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  # nie przerywaj deploya w połowie uploadu — niech skończy, kolejny w kolejce
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Wgranie strony na seohost
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Pobierz kod
+        uses: actions/checkout@v4
+
+      # Generuj smtp_config.php z GitHub Secrets.
+      # Hasło SMTP nigdy nie wpada do repo — żyje tylko w Secrets i na serwerze.
+      # var_export() poprawnie escapuje dowolne znaki w haśle.
+      - name: 🔐 Wygeneruj smtp_config.php z secretów
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_SECURE: ${{ secrets.SMTP_SECURE }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          SMTP_FROM: ${{ secrets.SMTP_FROM }}
+          SMTP_FROM_NAME: ${{ secrets.SMTP_FROM_NAME }}
+          SMTP_TO: ${{ secrets.SMTP_TO }}
+        run: |
+          php -r '
+            $c = [
+              "host"     => getenv("SMTP_HOST")      ?: "",
+              "port"     => (int) (getenv("SMTP_PORT") ?: 465),
+              "secure"   => getenv("SMTP_SECURE")    ?: "ssl",
+              "username" => getenv("SMTP_USER")      ?: "",
+              "password" => getenv("SMTP_PASS")      ?: "",
+              "from"     => getenv("SMTP_FROM")      ?: "",
+              "fromName" => getenv("SMTP_FROM_NAME") ?: "AllesKlar IT Service",
+              "to"       => getenv("SMTP_TO")        ?: "",
+              "timeout"  => 20,
+            ];
+            file_put_contents("smtp_config.php", "<?php\n// Generowane automatycznie przy deploy z GitHub Secrets — nie edytować ręcznie.\nreturn " . var_export($c, true) . ";\n");
+          '
+          echo "smtp_config.php zapisany ($(wc -c < smtp_config.php) bajtów)"
+
+      # Dla bezpieczeństwa: trzymamy też zbudowany "snapshot" jako artefakt
+      # GitHuba przez 7 dni — gdyby FTP padł, można pobrać i wgrać ręcznie.
+      - name: 💾 Zapisz pliki jako artefakt (backup)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-snapshot
+          path: |
+            .
+            !.git
+            !.github
+            !.claude
+            !node_modules
+            !*.mobileconfig
+          retention-days: 7
+
+      # Wgranie na seohost przez FTPS używając lftp.
+      # lftp używa tej samej sesji TLS dla kanału danych co dla kontrolnego —
+      # tego wymaga seohost (vsftpd require_ssl_reuse). Prostsze biblioteki
+      # (basic-ftp, SamKirkland action) na tym wykładają się.
+      - name: 📤 Wgraj na seohost (FTPS przez lftp)
+        env:
+          FTP_HOST: ${{ secrets.FTP_SERVER }}
+          FTP_USER: ${{ secrets.FTP_USERNAME }}
+          FTP_PASS: ${{ secrets.FTP_PASSWORD }}
+          FTP_PORT: ${{ secrets.FTP_PORT || vars.FTP_PORT || '21' }}
+          REMOTE_DIR: ${{ secrets.FTP_SERVER_DIR || vars.FTP_SERVER_DIR || './' }}
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+          {
+            echo "set cmd:fail-exit yes"
+            echo "set net:max-retries 3"
+            echo "set net:timeout 25"
+            echo "set net:reconnect-interval-base 5"
+            echo "set ftp:ssl-allow yes"
+            echo "set ftp:ssl-force yes"
+            echo "set ftp:ssl-protect-data yes"
+            echo "set ssl:verify-certificate no"
+            echo "set ftp:passive-mode yes"
+            echo "open -u \"$FTP_USER\",\"$FTP_PASS\" -p \"$FTP_PORT\" \"ftp://$FTP_HOST\""
+            echo "mirror --reverse --verbose --no-perms \\"
+            echo "  --exclude-glob='.git*' \\"
+            echo "  --exclude-glob='.github/' \\"
+            echo "  --exclude-glob='.claude/' \\"
+            echo "  --exclude-glob='node_modules/' \\"
+            echo "  --exclude-glob='.env*' \\"
+            echo "  --exclude-glob='*.mobileconfig' \\"
+            echo "  --exclude-glob='smtp/*' \\"
+            echo "  --exclude-glob='smtp_config.example.php' \\"
+            echo "  --exclude-glob='README.md' \\"
+            echo "  --exclude-glob='.DS_Store' \\"
+            echo "  --exclude-glob='Thumbs.db' \\"
+            echo "  ./ \"$REMOTE_DIR\""
+            echo "bye"
+          } > /tmp/lftp.cmds
+          lftp -f /tmp/lftp.cmds
