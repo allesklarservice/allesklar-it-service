@@ -115,7 +115,17 @@ function calculate_eligibility(array $input): array
     $sytuacja          = trim((string)($input['sytuacja']   ?? ''));
     $mieszkanie        = trim((string)($input['mieszkanie'] ?? ''));
     $czynsz            = max(0, (float)($input['czynsz']    ?? 0));
-    $mietstufe         = max(1, min(7, (int)($input['mietstufe'] ?? 3)));
+
+    // Mietstufe: jeśli klient podał bezpośrednio — używamy.
+    // Inaczej liczymy z kategorii regionu + opcjonalnej nazwy miasta.
+    if (!empty($input['mietstufe'])) {
+        $mietstufe = max(1, min(7, (int)$input['mietstufe']));
+    } else {
+        $regionTyp  = trim((string)($input['region_typ']  ?? 'srednie'));
+        $miastoNaz  = trim((string)($input['miasto_nazwa']?? ''));
+        $mietstufe  = infer_mietstufe($regionTyp, $miastoNaz);
+    }
+
     $osoby             = max(1, min(10, (int)($input['osoby'] ?? 1)));
     $liczbaDzieci      = max(0, min(10, (int)($input['liczba_dzieci'] ?? 0)));
     $dostajeKindergeld = !empty($input['kindergeld']);
@@ -227,7 +237,8 @@ function sanitize_input(array $input): array
         'sytuacja'      => trim((string)($input['sytuacja']      ?? '')),
         'mieszkanie'    => trim((string)($input['mieszkanie']    ?? '')),
         'czynsz'        => max(0, (float)($input['czynsz']       ?? 0)),
-        'mietstufe'     => max(1, min(7, (int)($input['mietstufe'] ?? 3))),
+        'region_typ'    => trim((string)($input['region_typ']    ?? 'srednie')),
+        'miasto_nazwa'  => substr(trim((string)($input['miasto_nazwa'] ?? '')), 0, 80),
         'osoby'         => max(1, min(10, (int)($input['osoby']  ?? 1))),
         'liczba_dzieci' => max(0, min(10, (int)($input['liczba_dzieci'] ?? 0))),
         'kindergeld'    => !empty($input['kindergeld']),

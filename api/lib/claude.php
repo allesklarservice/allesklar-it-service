@@ -29,11 +29,18 @@ function claude_generate_comment(string $apiKey, array $input, array $result): s
         . "- Na końcu konkretne CTA: 'Zleć nam wniosek za 50 €' albo konsultacja 25 €.\n"
         . "- NIE używaj fraz typu 'jako asystent AI'. Mów w 1. osobie jak doradca.";
 
+    $mietstufeUzyta = $result['meta']['mietstufe'] ?? '?';
+    $regionInfo = $input['miasto_nazwa']
+        ? "{$input['miasto_nazwa']} (kategoria: {$input['region_typ']}, Mietstufe {$mietstufeUzyta})"
+        : ucfirst($input['region_typ']) . " (Mietstufe {$mietstufeUzyta})";
+
     $userPrompt = sprintf(
         "Oto dane klienta i wynik analizy. Napisz komentarz po polsku.\n\n"
         . "DANE KLIENTA:\n"
         . "- Sytuacja: %s\n"
-        . "- Mieszkanie: %s, czynsz %s €/mies., Mietstufe %d, %d osób w gospodarstwie\n"
+        . "- Mieszkanie: %s, czynsz %s €/mies.\n"
+        . "- Region: %s\n"
+        . "- %d osób w gospodarstwie\n"
         . "- Dzieci: %d (Kindergeld: %s, mieszkają: %s)\n"
         . "- Dochód razem: %s €/mies. (z 1: %s, z 2: %s, inne: %s)\n"
         . "- Bürgergeld: %s\n\n"
@@ -45,7 +52,7 @@ function claude_generate_comment(string $apiKey, array $input, array $result): s
         $input['sytuacja'] ?: '(brak)',
         $input['mieszkanie'] ?: '(brak)',
         $input['czynsz'],
-        $input['mietstufe'],
+        $regionInfo,
         $input['osoby'],
         $input['liczba_dzieci'],
         $input['kindergeld'] ? 'TAK' : 'NIE',
