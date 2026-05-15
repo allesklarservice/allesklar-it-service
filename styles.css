@@ -1649,20 +1649,6 @@ a.contact-item:hover .contact-ico-wa {
 }
 
 /* ========== Kalkulator AI: highlight w menu + hero banner ========== */
-.nav-menu a.nav-highlight {
-    background: var(--gradient);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 999px;
-    font-weight: 700;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-.nav-menu a.nav-highlight:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
-    color: white;
-}
-
 .hero-ai-banner {
     display: flex;
     align-items: center;
