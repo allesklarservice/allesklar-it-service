@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wynajem Auta w Niemczech — sprawdzone firmy i kod rabatowy | AllesKlarService</title>
+    <meta name="description" content="Sprawdzone przez nas firmy wynajmu aut w Niemczech. Za 10 € odbierzesz nazwy 2 najlepszych firm + kod rabatowy dający szansę na 100 € bonusu po pierwszym miesiącu.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=20260515a">
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    <style>
+        .car-hero { padding: 130px 0 40px; text-align: center; position: relative; overflow: hidden; }
+        .car-hero .badge { margin-bottom: 18px; }
+        .car-hero h1 { font-size: clamp(34px, 5vw, 56px); margin-bottom: 16px; }
+        .car-hero p.lead {
+            font-size: 18px;
+            color: var(--text-soft);
+            max-width: 720px;
+            margin: 0 auto 28px;
+        }
+        .car-section { padding: 30px 0 80px; }
+        .car-wrap {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 32px;
+            align-items: stretch;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        @media (max-width: 900px) { .car-wrap { grid-template-columns: 1fr; } }
+        .car-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+        }
+        .car-card h2 { margin-bottom: 16px; font-size: 26px; }
+        .car-points { list-style: none; padding: 0; margin: 0 0 18px; }
+        .car-points li {
+            padding: 14px 14px 14px 50px;
+            position: relative;
+            background: var(--bg-soft);
+            border-radius: 12px;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        .car-points li::before {
+            content: "✔";
+            position: absolute;
+            left: 16px; top: 50%;
+            transform: translateY(-50%);
+            width: 24px; height: 24px;
+            border-radius: 50%;
+            background: var(--gradient);
+            color: white;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+        }
+        .car-buy {
+            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: 36px 32px;
+            text-align: center;
+            box-shadow: 0 25px 60px rgba(79, 70, 229, 0.35);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .car-buy .price {
+            font-size: 64px;
+            font-weight: 800;
+            line-height: 1;
+            margin: 12px 0 6px;
+            font-family: 'Bricolage Grotesque', sans-serif;
+        }
+        .car-buy .price span { font-size: 32px; opacity: 0.8; }
+        .car-buy .price-note { opacity: 0.85; margin-bottom: 22px; font-size: 15px; }
+        .car-buy ul { list-style: none; padding: 0; text-align: left; margin: 0 0 22px; }
+        .car-buy ul li { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.18); font-size: 15px; }
+        .car-buy ul li:last-child { border-bottom: none; }
+        .car-buy .btn-pay {
+            background: white;
+            color: #4F46E5;
+            font-weight: 800;
+            padding: 18px 28px;
+            border-radius: 999px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 17px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .car-buy .btn-pay:hover { transform: translateY(-2px); box-shadow: 0 16px 30px rgba(0,0,0,0.2); }
+        .car-info-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin: 32px auto 0;
+            max-width: 1100px;
+        }
+        .car-info-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+            box-shadow: var(--shadow-sm);
+        }
+        .car-info-card .icn { font-size: 28px; margin-bottom: 10px; }
+        .car-info-card strong { display: block; font-size: 16px; margin-bottom: 6px; }
+        .car-info-card p { color: var(--text-soft); font-size: 14px; line-height: 1.5; margin: 0; }
+        .car-warning {
+            background: #FEF3C7;
+            border: 1px solid #FBBF24;
+            color: #92400E;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-size: 15px;
+            margin-top: 18px;
+            line-height: 1.5;
+        }
+        .car-secret-note {
+            margin-top: 14px;
+            font-size: 13px;
+            opacity: 0.85;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-link">
+                <img src="logo.svg" alt="AllesKlarService" class="logo-img">
+                <span class="logo-text">AllesKlar<span class="logo-accent">Service</span></span>
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="kalkulator.html">🤖 Kalkulator AI</a>
+                <a href="index.html#uslugi">Usługi</a>
+                <a href="wynajem-auta.html" class="active">🚗 Wynajem auta</a>
+                <a href="blog.html">Blog</a>
+                <a href="index.html#kontakt" class="nav-cta">Kontakt</a>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="car-hero">
+        <div class="hero-bg">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+        </div>
+        <div class="container">
+            <span class="badge">🚗 Sprawdzone osobiście · 6 wymian aut · 0 problemów</span>
+            <h1>Wynajem Auta w Niemczech<br><span class="gradient-text">bez stresu i ukrytych kosztów</span></h1>
+            <p class="lead">
+                Po długim researchu wybrałem <strong>2 firmy</strong>, w których wynajmuję auta od lat.
+                Wymieniałem auto <strong>już 6 razy</strong> — i ani razu nie obciążono mnie dodatkowymi kwotami
+                za uszkodzenia, zwrot czy wymianę. Za <strong>10 €</strong> dostaniesz dokładną informację,
+                które to firmy + <strong>kod rabatowy</strong>, dzięki któremu możesz odzyskać <strong>100 €</strong>.
+            </p>
+        </div>
+    </section>
+
+    <!-- TEASER + PAYMENT -->
+    <section class="car-section">
+        <div class="container">
+            <div class="car-wrap">
+
+                <div class="car-card">
+                    <h2>Co dokładnie otrzymasz?</h2>
+                    <ul class="car-points">
+                        <li><strong>Nazwy 2 firm</strong> wynajmu aut w Niemczech, w których osobiście wynajmowałem — sprawdzone, bezpieczne, bez „kruczków" na uszkodzenia.</li>
+                        <li><strong>Bezpośrednie linki</strong> do oferty (długoterminowy wynajem / abonament) — wiesz dokładnie gdzie kliknąć.</li>
+                        <li><strong>Mój kod rabatowy</strong> do wpisania przy zamówieniu — szansa na <strong>100 € bonusu</strong> po pierwszym miesiącu (dla pierwszych 10 osób, które go wykorzystają).</li>
+                        <li><strong>Praktyczne info</strong> o kaucji i opłatach startowych — żebyś wiedział czego się spodziewać zanim zarezerwujesz.</li>
+                        <li><strong>Moje doświadczenie:</strong> dlaczego po 6 wymianach nigdy nie zapłaciłem ani grosza ekstra.</li>
+                    </ul>
+
+                    <div class="car-warning">
+                        ⚠️ <strong>Uwaga:</strong> aktualnie <strong>przygotowanie auta w obu firmach kosztuje 0 €</strong>
+                        — ale to może się zmienić w każdej chwili. Im szybciej zarezerwujesz, tym lepiej.
+                    </div>
+                </div>
+
+                <div class="car-buy">
+                    <div style="font-size:14px;opacity:0.85;text-transform:uppercase;letter-spacing:1px">Płatność jednorazowa</div>
+                    <div class="price">10<span> €</span></div>
+                    <div class="price-note">jednorazowo · bezpieczna płatność Stripe</div>
+
+                    <ul>
+                        <li>✓ 2 sprawdzone firmy</li>
+                        <li>✓ Kod rabatowy (szansa na 100 € bonusu)</li>
+                        <li>✓ Linki do ofert długoterminowych</li>
+                        <li>✓ Info o kaucji i opłatach startowych</li>
+                        <li>✓ Dostęp natychmiast po opłacie</li>
+                    </ul>
+
+                    <button class="btn-pay" onclick="payCarRental(event)">💳 Zapłać 10 € i odbierz info</button>
+
+                    <p class="car-secret-note">🔒 Informacja prywatna — zachowaj ją dla siebie.</p>
+                </div>
+
+            </div>
+
+            <!-- 3 info kafelki -->
+            <div class="car-info-row">
+                <div class="car-info-card">
+                    <div class="icn">🛡️</div>
+                    <strong>Zero problemów ze zwrotami</strong>
+                    <p>W obu firmach nie ma typowych „kruczków" o uszkodzenia auta. Wymieniałem auto 6 razy — ani razu nie zapłaciłem nic ekstra.</p>
+                </div>
+                <div class="car-info-card">
+                    <div class="icn">💶</div>
+                    <strong>Kaucja: ok. 300 €</strong>
+                    <p>W firmie premium kaucja to zwykle <strong>300 €</strong>, zwracana po pierwszym miesiącu wynajmu. Druga firma działa podobnie.</p>
+                </div>
+                <div class="car-info-card">
+                    <div class="icn">⏱️</div>
+                    <strong>Przygotowanie: 0 €</strong>
+                    <p>Aktualnie obie firmy nie pobierają opłaty za przygotowanie auta. <strong>To może się zmienić w każdej chwili</strong> — działaj szybko.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border:none;padding-top:0">
+                <span>© 2026 AllesKlarService · Stade · Pomoc dla Polaków w Niemczech</span>
+                <span><a href="index.html" style="color:var(--text-soft)">← Wróć na stronę główną</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    async function payCarRental(event) {
+        event.preventDefault();
+        const btn = event.currentTarget;
+        const original = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = '⏳ Łączę z Stripe...';
+        try {
+            const r = await fetch('/api/create-service-checkout.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ service: 'wynajem_auta' })
+            });
+            const data = await r.json();
+            if (!data.success || !data.url) throw new Error(data.message || 'Błąd płatności');
+            window.location.href = data.url;
+        } catch (err) {
+            alert('Płatność nie wystartowała: ' + err.message + '\n\nSpróbuj jeszcze raz albo napisz na WhatsApp +49 155 10247160.');
+            btn.disabled = false;
+            btn.textContent = original;
+        }
+    }
+
+    // hamburger menu
+    document.getElementById('hamburger')?.addEventListener('click', function() {
+        document.getElementById('navMenu')?.classList.toggle('open');
+    });
+    </script>
+</body>
+</html>

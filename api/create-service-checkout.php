@@ -54,6 +54,11 @@ const SERVICES = [
         'description' => 'Wypełnienie i złożenie wniosku o świadczenie rodzinne',
         'amount' => 5000, // 50,00 €
     ],
+    'wynajem_auta' => [
+        'name' => 'Wynajem Auta w Niemczech — sprawdzone firmy i kod (AllesKlarService)',
+        'description' => 'Po płatności otrzymasz nazwy 2 sprawdzonych firm + kod rabatowy dający szansę na 100 € bonusu',
+        'amount' => 1000, // 10,00 €
+    ],
 ];
 
 $raw = file_get_contents('php://input');
@@ -84,7 +89,7 @@ $payload = [
     'success_url' => ($keys['site_url'] ?? 'https://allesklar-it-service.de')
                      . '/dziekujemy.html?session_id={CHECKOUT_SESSION_ID}',
     'cancel_url'  => ($keys['site_url'] ?? 'https://allesklar-it-service.de')
-                     . '/kalkulator.html',
+                     . ($serviceId === 'wynajem_auta' ? '/wynajem-auta.html' : '/kalkulator.html'),
     'locale' => 'pl',
     'metadata[service]' => $serviceId,
     'metadata[service_name]' => $service['name'],

@@ -86,6 +86,126 @@
             box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
             margin-top: 12px;
         }
+        /* === SEKCJA POUFNA — WYNAJEM AUTA === */
+        .car-reveal {
+            display: none;
+            text-align: left;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            color: #F8FAFC;
+            border-radius: var(--radius-lg);
+            padding: 36px 32px;
+            max-width: 720px;
+            margin: 30px auto 24px;
+            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        .car-reveal.show { display: block; }
+        .car-reveal::before {
+            content: "";
+            position: absolute;
+            top: -80px; right: -80px;
+            width: 220px; height: 220px;
+            background: radial-gradient(circle, rgba(168,85,247,0.35), transparent 70%);
+            pointer-events: none;
+        }
+        .car-reveal h2 {
+            color: white;
+            font-size: 28px;
+            margin: 0 0 8px;
+            position: relative;
+        }
+        .car-reveal .car-sub {
+            color: #CBD5E1;
+            margin-bottom: 24px;
+            position: relative;
+        }
+        .car-firm {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 14px;
+            position: relative;
+        }
+        .car-firm h3 {
+            color: white;
+            margin: 0 0 8px;
+            font-size: 19px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .car-firm .rank {
+            background: linear-gradient(135deg,#F59E0B,#EF4444);
+            color: white;
+            padding: 2px 10px;
+            font-size: 12px;
+            border-radius: 999px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .car-firm a.car-link {
+            color: #93C5FD;
+            word-break: break-all;
+            display: inline-block;
+            margin-top: 4px;
+        }
+        .car-code {
+            display: inline-block;
+            background: #FDE68A;
+            color: #78350F;
+            font-weight: 800;
+            font-family: 'Courier New', monospace;
+            font-size: 20px;
+            letter-spacing: 2px;
+            padding: 10px 16px;
+            border-radius: 10px;
+            margin: 10px 0 4px;
+        }
+        .car-bonus {
+            background: rgba(34,197,94,0.15);
+            border: 1px solid rgba(34,197,94,0.4);
+            border-radius: 10px;
+            padding: 12px 14px;
+            color: #BBF7D0;
+            font-size: 14px;
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+        .car-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
+            gap: 10px;
+            margin: 16px 0 8px;
+        }
+        .car-meta div {
+            background: rgba(255,255,255,0.06);
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: 14px;
+            color: #E2E8F0;
+            line-height: 1.5;
+        }
+        .car-meta strong { display: block; color: white; margin-bottom: 4px; }
+        .car-secret-banner {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239,68,68,0.45);
+            border-radius: 10px;
+            padding: 12px 14px;
+            color: #FCA5A5;
+            font-size: 14px;
+            margin-top: 18px;
+            font-weight: 600;
+        }
+        .car-andrzej {
+            color: #CBD5E1;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-top: 14px;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -97,6 +217,7 @@
             </a>
             <nav class="nav-menu">
                 <a href="kalkulator.html">🤖 Kalkulator AI</a>
+                <a href="wynajem-auta.html">🚗 Wynajem auta</a>
                 <a href="index.html#uslugi">Usługi</a>
                 <a href="blog.html">Blog</a>
                 <a href="index.html#kontakt" class="nav-cta">Kontakt</a>
@@ -118,7 +239,58 @@
                 <p id="orderDetails" style="color:var(--text-soft)">Ładuję szczegóły...</p>
             </div>
 
-            <div class="thanks-card">
+            <!-- SEKCJA POUFNA: pokazuje się tylko gdy klient kupił "wynajem_auta" -->
+            <div class="car-reveal" id="carReveal">
+                <h2>🚗 Twoja prywatna lista — wynajem auta w Niemczech</h2>
+                <p class="car-sub">Dziękuję za zaufanie! Poniżej moje sprawdzone osobiście firmy oraz <strong>kod rabatowy</strong>, który może dać Ci 100 € bonusu.</p>
+
+                <div class="car-firm">
+                    <h3><span class="rank">#1 Polecam</span> SIXT PLUS</h3>
+                    <p>Wybrany przeze mnie po długim researchu — najlepsza firma do długoterminowego wynajmu auta w Niemczech. Brak typowych „kruczków" o uszkodzenia.</p>
+                    <a class="car-link" href="https://www.sixt.de/plus/offerlist/" target="_blank" rel="noopener noreferrer">🔗 https://www.sixt.de/plus/offerlist/</a>
+
+                    <div style="margin-top:14px">
+                        <div style="color:#CBD5E1;font-size:14px;margin-bottom:4px">Wpisz przy zamówieniu kod:</div>
+                        <span class="car-code">AN62774372</span>
+                    </div>
+
+                    <div class="car-bonus">
+                        🎁 <strong>Bonus 100 €:</strong> jeśli będziesz wśród <strong>pierwszych 10 osób</strong>, które wykorzystają ten kod —
+                        po pierwszym miesiącu wynajmu otrzymasz <strong>100 €</strong>. Wtedy też i ja otrzymam 100 €, więc dziękuję! 🙏
+                    </div>
+
+                    <div class="car-meta">
+                        <div><strong>💶 Kaucja</strong>zwykle ok. <strong>300 €</strong> — zwracana po pierwszym miesiącu wynajmu</div>
+                        <div><strong>⏱️ Przygotowanie auta</strong>aktualnie <strong>0 €</strong>, ale to może się zmienić w każdej chwili!</div>
+                    </div>
+                </div>
+
+                <div class="car-firm">
+                    <h3><span class="rank" style="background:linear-gradient(135deg,#06B6D4,#3B82F6)">#2 Alternatywa</span> Europcar (My Europcar)</h3>
+                    <p>Druga sprawdzona firma — flota B2C długoterminowa. Również bez problemów ze zwrotami, wymianą czy uszkodzeniami.</p>
+                    <a class="car-link" href="https://www.europcar.de/de-de/l/my-europcar/b2c/fleet" target="_blank" rel="noopener noreferrer">🔗 https://www.europcar.de/de-de/l/my-europcar/b2c/fleet</a>
+
+                    <div class="car-meta">
+                        <div><strong>⏱️ Przygotowanie auta</strong>aktualnie <strong>0 €</strong> — działa podobnie jak SIXT PLUS, ale może się zmienić w każdej chwili.</div>
+                    </div>
+                </div>
+
+                <p class="car-andrzej">
+                    💬 <strong>Moje doświadczenie:</strong> w obu firmach <strong>nie ma problemu</strong> ze zwrotami, wymianą auta ani z typowymi „uszkodzeniami",
+                    o których słyszysz na grupach. <strong>Wymieniałem auto już 6 razy — nigdy nie obciążono mnie żadnymi dodatkowymi kwotami.</strong>
+                </p>
+
+                <div class="car-secret-banner">
+                    🔒 Zapłaciłeś/aś za tę informację — <strong>nie dziel się nią z innymi</strong>. Zachowaj poufność.
+                </div>
+
+                <p style="margin-top:18px;color:#CBD5E1;line-height:1.6">
+                    🙌 <strong>Życzę powodzenia!</strong> Daj mi znać przez
+                    <a href="index.html#kontakt" style="color:#93C5FD"><strong>formularz kontaktowy</strong></a>, kiedy już będziesz mieć auto — będę kibicować, żebyś trafił/a w pierwszą 10-tkę z kodem!
+                </p>
+            </div>
+
+            <div class="thanks-card" id="stepsCard">
                 <h3>📋 Co teraz?</h3>
                 <ol class="thanks-steps">
                     <li>
@@ -136,7 +308,7 @@
                 </ol>
             </div>
 
-            <div style="margin-top:32px">
+            <div style="margin-top:32px" id="waCard">
                 <p style="color:var(--text-soft);margin-bottom:12px">Chcesz przyspieszyć? Napisz od razu:</p>
                 <a href="https://wa.me/4915510247160?text=Cze%C5%9B%C4%87%21%20Zap%C5%82aci%C5%82em%2Fa%20za%20us%C5%82ug%C4%99%20na%20stronie." class="wa-cta" target="_blank" rel="noopener noreferrer">
                     💬 Napisz na WhatsApp
@@ -172,6 +344,13 @@
                     E-mail: ${data.email || '—'}<br>
                     ID transakcji: <code style="font-size:12px">${sid}</code>
                 `;
+
+                // === Wynajem auta: odsłoń poufną sekcję i ukryj standardowe "Co teraz" ===
+                if (data.service === 'wynajem_auta') {
+                    document.getElementById('carReveal')?.classList.add('show');
+                    document.getElementById('stepsCard')?.style.setProperty('display', 'none');
+                    document.getElementById('waCard')?.style.setProperty('display', 'none');
+                }
             } else {
                 el.textContent = 'Nie udało się załadować szczegółów. Sprawdź skrzynkę e-mail (faktura z Stripe).';
             }
