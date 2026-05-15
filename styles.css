@@ -1726,53 +1726,6 @@ a.contact-item:hover .contact-ico-wa {
     .hero-ai-banner-body strong { font-size: 14px; }
 }
 
-/* ========== ANNOUNCEMENT BAR (top) ========== */
-.announcement-bar {
-    display: block;
-    background: var(--gradient);
-    color: white;
-    text-decoration: none;
-    padding: 10px 0;
-    position: relative;
-    z-index: 101;
-    text-align: center;
-    font-size: 14px;
-    transition: filter 0.2s;
-}
-.announcement-bar:hover { filter: brightness(1.08); color: white; }
-.announcement-bar .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-.announcement-bar strong { font-weight: 800; }
-.announcement-pulse {
-    display: inline-block;
-    animation: announcement-pulse 1.8s infinite;
-    font-size: 18px;
-}
-@keyframes announcement-pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-}
-.announcement-arrow {
-    font-weight: 800;
-    margin-left: 4px;
-}
-
-/* Navbar musi być pod announcement bar (bar = position relative,
-   navbar = position fixed). Przesuwamy navbar w dół. */
-.navbar { top: 44px; }
-.hero { padding-top: 120px; }
-
-@media (max-width: 720px) {
-    .announcement-bar { padding: 8px 0; font-size: 13px; }
-    .announcement-text { font-size: 12px; }
-    .navbar { top: 50px; }
-}
-
 /* ========== SEKCJA PROMO AI ========== */
 .ai-promo-section {
     padding: 80px 0;
@@ -1925,4 +1878,132 @@ a.contact-item:hover .contact-ico-wa {
     .ai-promo-section { padding: 48px 0; }
     .ai-promo-price { font-size: 56px; }
     .ai-promo-price span { font-size: 32px; }
+}
+
+/* ========== SEKCJA WYNAJMU AUTA ========== */
+.car-promo-section {
+    background: var(--bg-soft);
+    padding: 80px 0;
+}
+.car-promo-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    overflow: hidden;
+    position: relative;
+}
+.car-promo-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient);
+}
+.car-promo-body {
+    padding: 40px 44px;
+}
+.car-promo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+.car-promo-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+.car-promo-check {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    background: #ECFDF5;
+    color: #059669;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 16px;
+}
+.car-promo-list li strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 17px;
+    color: var(--text);
+}
+.car-promo-list li p {
+    font-size: 14.5px;
+    color: var(--text-soft);
+    line-height: 1.5;
+    margin: 0;
+}
+.car-promo-cta {
+    background: var(--bg-soft);
+    padding: 40px 36px;
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 18px;
+}
+.car-promo-price {
+    text-align: center;
+}
+.car-promo-price-label {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-soft);
+    margin-bottom: 6px;
+}
+.car-promo-price-value {
+    font-family: var(--font-display);
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 1;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.car-promo-price-value span {
+    font-size: 32px;
+}
+.car-promo-price-note {
+    display: block;
+    margin-top: 8px;
+    font-size: 13px;
+    color: var(--text-soft);
+}
+.car-promo-secure {
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-soft);
+    margin: 0;
+}
+
+@media (max-width: 900px) {
+    .car-promo-card { grid-template-columns: 1fr; }
+    .car-promo-body { padding: 32px 24px; }
+    .car-promo-cta {
+        padding: 28px 24px 32px;
+        border-left: none;
+        border-top: 1px solid var(--border);
+    }
+}
+@media (max-width: 480px) {
+    .car-promo-section { padding: 48px 0; }
+    .car-promo-list { gap: 18px; }
+    .car-promo-list li strong { font-size: 16px; }
+    .car-promo-price-value { font-size: 52px; }
+    .car-promo-price-value span { font-size: 28px; }
 }

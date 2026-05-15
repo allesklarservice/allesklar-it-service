@@ -8,22 +8,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=20260515a">
+    <link rel="stylesheet" href="styles.css?v=20260515b">
     <link rel="icon" type="image/svg+xml" href="logo.svg">
 </head>
 <body>
-
-    <!-- ANNOUNCEMENT BAR (zawsze na samej górze) -->
-    <a href="kalkulator.html" class="announcement-bar">
-        <div class="container">
-            <span class="announcement-pulse">🤖</span>
-            <span class="announcement-text">
-                <strong>NOWOŚĆ:</strong> Kalkulator AI sprawdzi w 5 minut, czy należy Ci się
-                <strong>Wohngeld lub Kinderzuschlag</strong> · tylko 4,99 €
-            </span>
-            <span class="announcement-arrow">→</span>
-        </div>
-    </a>
 
     <!-- NAVIGATION -->
     <header class="navbar" id="navbar">
@@ -250,44 +238,51 @@
     </section>
 
     <!-- BONUS: WYNAJEM AUTA W NIEMCZECH -->
-    <section class="section" id="wynajem-auta-promo" style="padding:60px 0">
+    <section class="section car-promo-section" id="wynajem-auta-promo">
         <div class="container">
-            <a href="wynajem-auta.html" style="text-decoration:none;color:inherit;display:block">
-                <div style="
-                    background: linear-gradient(135deg, #0F172A 0%, #1E293B 60%, #4F46E5 130%);
-                    color:white;
-                    border-radius: 24px;
-                    padding: 44px 40px;
-                    display: grid;
-                    grid-template-columns: 1fr auto;
-                    gap: 28px;
-                    align-items: center;
-                    box-shadow: 0 25px 60px rgba(15,23,42,0.35);
-                    position: relative;
-                    overflow: hidden;
-                ">
-                    <div style="position:absolute;top:-80px;right:-60px;width:240px;height:240px;background:radial-gradient(circle,rgba(168,85,247,0.45),transparent 70%);pointer-events:none"></div>
-                    <div style="position:relative">
-                        <div style="display:inline-block;background:rgba(255,255,255,0.12);padding:6px 14px;border-radius:999px;font-size:13px;letter-spacing:0.5px;margin-bottom:14px">
-                            🚗 NOWOŚĆ · Sprawdzone osobiście
-                        </div>
-                        <h2 style="color:white;font-size:clamp(26px,3.5vw,38px);margin:0 0 10px;line-height:1.15">
-                            Wynajem Auta w Niemczech<br>
-                            <span style="background:linear-gradient(135deg,#FDE68A,#F59E0B);-webkit-background-clip:text;background-clip:text;color:transparent">bez stresu i ukrytych kosztów</span>
-                        </h2>
-                        <p style="color:#CBD5E1;font-size:17px;line-height:1.55;margin:0 0 18px;max-width:640px">
-                            Po długim researchu wybrałem <strong style="color:white">2 sprawdzone firmy</strong>, w których wymieniałem auto już <strong style="color:white">6 razy</strong> — i ani razu nie obciążono mnie dodatkowymi kwotami za zwrot ani uszkodzenia. Za <strong style="color:white">10 €</strong> dostaniesz ich nazwy + <strong style="color:white">kod rabatowy z szansą na 100 € bonusu</strong>.
-                        </p>
-                        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-                            <span style="background:white;color:#0F172A;font-weight:800;padding:14px 24px;border-radius:999px;display:inline-block">
-                                💳 Zapłać 10 € i odbierz info →
-                            </span>
-                            <span style="color:#94A3B8;font-size:13px">🔒 Informacja prywatna · płatność Stripe</span>
-                        </div>
-                    </div>
-                    <div style="font-size:120px;line-height:1;opacity:0.85;position:relative" aria-hidden="true">🚗</div>
+            <div class="section-head">
+                <span class="eyebrow">🚗 Bonus dla naszych klientów</span>
+                <h2>Wynajem auta w Niemczech <span class="gradient-text">bez ukrytych kosztów</span></h2>
+                <p>Po długim researchu wybrałem firmy, w których sam wymieniałem auto 6 razy — i ani razu nie zapłaciłem za zwrot czy uszkodzenia.</p>
+            </div>
+            <div class="car-promo-card">
+                <div class="car-promo-body">
+                    <ul class="car-promo-list">
+                        <li>
+                            <span class="car-promo-check">✓</span>
+                            <div>
+                                <strong>2 sprawdzone osobiście firmy</strong>
+                                <p>Wymieniałem u nich auto 6 razy — bez żadnych „niespodzianek" przy zwrocie.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="car-promo-check">✓</span>
+                            <div>
+                                <strong>Kod rabatowy z szansą na 100 € bonusu</strong>
+                                <p>Mój prywatny kod — przekazuję go bezpośrednio po opłaceniu.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="car-promo-check">✓</span>
+                            <div>
+                                <strong>Zero ukrytych kosztów</strong>
+                                <p>Konkretna informacja: nazwy firm + co i jak zarezerwować po polsku.</p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-            </a>
+                <div class="car-promo-cta">
+                    <div class="car-promo-price">
+                        <span class="car-promo-price-label">Cena jednorazowa</span>
+                        <div class="car-promo-price-value">10 <span>€</span></div>
+                        <span class="car-promo-price-note">płatność Stripe</span>
+                    </div>
+                    <a href="wynajem-auta.html" class="btn btn-primary btn-block">
+                        Odbierz informację →
+                    </a>
+                    <p class="car-promo-secure">🔒 Informacja prywatna, wysyłana na e-mail</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -794,6 +789,6 @@
         </div>
     </footer>
 
-    <script src="script.js?v=20260515a"></script>
+    <script src="script.js?v=20260515b"></script>
 </body>
 </html>
